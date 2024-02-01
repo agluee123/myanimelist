@@ -33,5 +33,6 @@ $animes = $animeNegocio->listar();
     <p>No hay animes disponibles.</p>
 <?php endif; ?>
 
+
 </body>
 </html>

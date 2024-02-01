@@ -14,7 +14,7 @@ class GeneroNegocio {
             while ($fila=$resultado->fetch_assoc()){
                 $aux=new Genero();
                 $aux->setIdGenero($fila["id_genero"]);
-                $aux->setNombreGenero($fila["nombre_Genero"]);
+                $aux->setNombreGenero($fila["nombre_genero"]);
                 
 
                 $lista[]=$aux;

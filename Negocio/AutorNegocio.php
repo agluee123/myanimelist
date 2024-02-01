@@ -2,7 +2,7 @@
 include_once('../Dominio/Autor.php');
 include_once('../Negocio/AccesoDatos.php');
 
-class GeneroNegocio {
+class AutorNegocio {
     public function listarAutor(){
         $lista=array();
         $conexion=mysqli_connect("localhost","root","","myanime") or die ("problemas de conexion");
