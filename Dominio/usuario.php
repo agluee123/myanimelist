@@ -1,5 +1,5 @@
 <?php
-class Puntuacion    
+class Usuario       
 {
     private $id_usuario;
     private $nombre;

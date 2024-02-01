@@ -1,9 +1,9 @@
 <?php
 include_once ("../Dominio/Anime.php");
 include_once ("../Negocio/animeNegocio.php");
+include_once ("../intermedios/AnimeIntermedio.php");
 
-$animeNegocio = new AnimeNegocio();
-$animes = $animeNegocio->listar();
+
 ?>
 
 <!DOCTYPE html>
