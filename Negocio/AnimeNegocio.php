@@ -29,41 +29,69 @@ class animeNegocio
 
     }
 
-    
+    //ESTO ME FUNCIONO LEYENDO LOS PDF DE ZARATE, Y CON UNOS TIPS DEL TERCER INTEGRANTE
     public function agregar(Anime $nuevo) {
-        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die ("problemas de conexion");
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+    
+        $query = "INSERT INTO anime (nombre, descripcion, capitulos, estado, imagen_url, id_autor, id_genero, suma_votos, total_votos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+        $stmt = mysqli_prepare($conexion, $query);
 
-       
-        $nombre = mysqli_real_escape_string($conexion, $nuevo->getNombre());
-        $descripcion = mysqli_real_escape_string($conexion, $nuevo->getDescripcion());
-        $capitulos = mysqli_real_escape_string($conexion, $nuevo->getCapitulos());
-        $estado = mysqli_real_escape_string($conexion, $nuevo->getEstado());
-        $imagen_url = mysqli_real_escape_string($conexion, $nuevo->getImagenUrl());
-        $id_autor = mysqli_real_escape_string($conexion, $nuevo->getIdAutor());
-        $id_genero = mysqli_real_escape_string($conexion, $nuevo->getIdGenero());
-        $suma_votos = mysqli_real_escape_string($conexion, $nuevo->getSumaVotos());
-        $total_votos = mysqli_real_escape_string($conexion, $nuevo->getTotalVotos());
+        mysqli_stmt_bind_param($stmt, "ssisiiiii", $nombre, $descripcion, $capitulos, $estado, $imagenUrl, $id_autor, $id_genero, $suma_votos, $total_votos);
+    
+        $nombre = $nuevo->getNombre();
+        $descripcion = $nuevo->getDescripcion();
+        $capitulos = $nuevo->getCapitulos();
+        $estado = $nuevo->getEstado();
+        $imagenUrl = $nuevo->getImagenUrl();
+        $id_autor = $nuevo->getIdAutor();
+        $id_genero = $nuevo->getIdGenero();
+        $suma_votos = $nuevo->getSumaVotos();
+        $total_votos = $nuevo->getTotalVotos();
 
-       
-        $query = "INSERT INTO anime (nombre, descripcion, capitulos, estado, imagen_url, id_autor, id_genero, suma_votos, total_votos)
-                  VALUES ('$nombre', '$descripcion', '$capitulos', '$estado', '$imagen_url', '$id_autor', '$id_genero', '$suma_votos', '$total_votos')";
-
-        
-        $resultado = $conexion->query($query);
-
-       
-        if ($resultado) {
-            echo "Anime agregado correctamente.";
+        mysqli_stmt_execute($stmt);
+    
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Anime agregado correctamente";
         } else {
-            echo "Error al agregar el anime: " . $conexion->error;
+            echo "Error al agregar el anime";
         }
-
-        
-        $conexion->close();
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conexion);
+    
     }
-}
+    
     
 
 
 
+// $nombre = mysqli_real_escape_string($conexion, $nuevo->getNombre());
+// $descripcion = mysqli_real_escape_string($conexion, $nuevo->getDescripcion());
+// $capitulos = mysqli_real_escape_string($conexion, $nuevo->getCapitulos());
+// $estado = mysqli_real_escape_string($conexion, $nuevo->getEstado());
+// $imagen_url = mysqli_real_escape_string($conexion, $nuevo->getImagenUrl());
+// $id_autor = mysqli_real_escape_string($conexion, $nuevo->getIdAutor());
+// $id_genero = mysqli_real_escape_string($conexion, $nuevo->getIdGenero());
+// $suma_votos = mysqli_real_escape_string($conexion, $nuevo->getSumaVotos());
+// $total_votos = mysqli_real_escape_string($conexion, $nuevo->getTotalVotos());
+
+
+// $query = "INSERT INTO anime (nombre, descripcion, capitulos, estado, imagen_url, id_autor, id_genero, suma_votos, total_votos)
+//           VALUES ('$nombre', '$descripcion', '$capitulos', '$estado', '$imagen_url', '$id_autor', '$id_genero', '$suma_votos', '$total_votos')";
+
+
+// $resultado = $conexion->query($query);
+
+
+// if ($resultado) {
+//     echo "Anime agregado correctamente.";
+// } else {
+//     echo "Error al agregar el anime: " . $conexion->error;
+// }
+
+
+// $conexion->close();
+
+}
 ?>

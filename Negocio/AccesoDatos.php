@@ -1,6 +1,8 @@
 <?php
 
 class AccesoDatos {
+
+    //ESTA CLASE NO FUNCIONA COMO QUISIERA, YA QUE NO CONOZCO TANTO PHP AJAJJAJAJAJAJ
     private $conexion;
     private $comando;
     private $lector;
@@ -9,8 +11,6 @@ class AccesoDatos {
     {
         return $this->lector;
     }
-
-
 
     public function __construct() {
         $this->conexion = new mysqli("localhost", "root", "", "myanime");
@@ -22,9 +22,9 @@ class AccesoDatos {
         $this->comando = new mysqli_stmt($this->conexion);
     }
 
-    public function setearConsulta($consulta) {
-        $this->comando = $this->conexion->prepare($consulta);
-    }
+     public function setearConsulta($consulta) {
+         $this->comando = $this->conexion->prepare($consulta);
+     }
 
     public function ejecutarLectura() {
         try {
@@ -35,13 +35,13 @@ class AccesoDatos {
         }
     }
 
-    public function ejecutarAccion() {
-        try {
-            $this->comando->execute();
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-    }
+     public function ejecutarAccion() {
+         try {
+             $this->comando->execute();
+         } catch (Exception $ex) {
+             throw $ex;
+         }
+     }
 
     public function setearParametro($nombre, $valor) {
         $this->comando->bind_param($nombre, $valor);
@@ -54,5 +54,7 @@ class AccesoDatos {
         $this->comando->close();
         $this->conexion->close();
     }
+
 }
+
 ?>
