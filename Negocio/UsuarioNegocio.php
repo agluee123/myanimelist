@@ -31,6 +31,41 @@ class UsuarioNegocio{
 
         
     }
+
+    public function ValidarUser(usuario $nuevo){
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+        $query = ("SELECT email FROM usuario WHERE email=?");
+    
+        $stmt = mysqli_prepare($conexion, $query);
+        $email = $nuevo->getEmail();
+        mysqli_stmt_bind_param($stmt, "s", $email);
+    
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+    
+        // // if (mysqli_stmt_num_rows($stmt) > 0) {
+        // //     echo "Ya existe un usuario con ese correo electrónico.";
+        // // } else {
+        // //     echo "Puedes crear el usuario con ese correo electrónico.";
+        // // }
+
+        $usuarioExiste = (mysqli_stmt_num_rows($stmt) > 0);
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conexion);
+
+        return $usuarioExiste;
+    }
+
+    
+
+
+
+    
+    
+
+
+
 }
 
 ?>

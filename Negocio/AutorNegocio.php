@@ -5,6 +5,8 @@ include_once('../Negocio/AccesoDatos.php');
 
 ////DEBERIA SER UN METODO, DE INSERTAR AUTOR, CON ALGUNA VALIDACION, PARA CORROBORAR QUE NO SE CARGUE EL MISMO AUTOR EN LA DB.
 class AutorNegocio {
+
+    //ESTO ESTA MAL, POR QUE DEBE PERMITIRA ESCRIBIR EL AUTOR, Y NO LISTARLO
     public function listarAutor(){
         $lista=array();
         $conexion=mysqli_connect("localhost","root","","myanime") or die ("problemas de conexion");
