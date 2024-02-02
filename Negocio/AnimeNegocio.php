@@ -17,6 +17,7 @@ class animeNegocio
                 $aux->setCapitulos($fila["capitulos"]);
                 $aux->setEstado($fila["estado"]);
                 $aux->setImagenUrl($fila["imagen_url"]);
+                
 
                 $lista[]=$aux;
                 
@@ -29,7 +30,6 @@ class animeNegocio
 
     }
 
-    //ESTO ME FUNCIONO LEYENDO LOS PDF DE ZARATE, Y CON UNOS TIPS DEL TERCER INTEGRANTE
     public function agregar(Anime $nuevo) {
         $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
     
@@ -37,8 +37,8 @@ class animeNegocio
     
         $stmt = mysqli_prepare($conexion, $query);
 
-        mysqli_stmt_bind_param($stmt, "ssisiiiii", $nombre, $descripcion, $capitulos, $estado, $imagenUrl, $id_autor, $id_genero, $suma_votos, $total_votos);
-    
+        mysqli_stmt_bind_param($stmt, "ssissiiii", $nombre, $descripcion, $capitulos, $estado, $imagenUrl, $id_autor, $id_genero, $suma_votos, $total_votos);
+        //la s es cuando pasas un string(varchar)  int es i -
         $nombre = $nuevo->getNombre();
         $descripcion = $nuevo->getDescripcion();
         $capitulos = $nuevo->getCapitulos();
