@@ -16,7 +16,6 @@ include_once ("../Intermedios/AnimeIntermedio.php");
 <body>
 
 
-
     <h2>Agregar Anime</h2>
 
 <form method="post" action="adminAnime.php">
@@ -94,8 +93,77 @@ include_once ("../Intermedios/AnimeIntermedio.php");
 
     <br>
 
-    <button type="submit">Agregar Anime</button>
+    <button type="submit" name="agregar">Agregar Anime</button>
 </form>
+
+
+<h3>Editar</h3>
+
+<form method="post" action="../Intermedios/animeIntermedio.php">
+
+    <label for="nuevo_id_genero"> ID anime:</label>
+    <input type="number" name="anime_id" value="">
+    <br>
+
+    <label for="nuevo_nombre">modificar Nombre:</label>
+    <input type="text" name="nuevo_nombre" required>
+
+    <label for="nueva_descripcion">modificar  Descripción:</label>
+    <textarea name="nueva_descripcion" required></textarea>
+    <br>
+    <label for="nuevos_capitulos">modificar Capítulos:</label>
+    <input type="text" name="nuevos_capitulos">
+
+    <label for="nuevo_estado">modificar Estado:</label>
+    <input type="text" name="nuevo_estado">
+    <br>
+    <label for="nueva_imagen_url">modificar URL de la Imagen:</label>
+    <input type="text" name="nueva_imagen_url">
+
+    <label for="nuevo_tipo">modificar Tipo:</label>
+    <input type="text" name="nuevo_tipo">
+    <br>
+    <label for="nuevo_tomo">modificar Tomo:</label>
+    <input type="text" name="nuevo_tomo">
+    <br>
+    <label for="nuevo_id_autor">modificar ID del Autor:</label>
+    <input type="text" name="nuevo_id_autor">
+
+    <label for="nuevo_id_genero">modificar ID del Género:</label>
+    <input type="text" name="nuevo_id_genero">
+    <br>
+    <label for="nuevo_id_genero"> ID anime:</label>
+    <input type="number" name="anime_id" value="">
+
+    <input type="submit" name="modificar" value="Modificar Anime">
+</form>
+
+
+
+
+
+<h2>eliminar anime</h2>
+
+<form method="POST" action="../Intermedios/animeIntermedio.php">
+    <label for="anime_id">Seleccionar Anime a eliminar:</label>
+    <select name="anime_id" required>
+        <?php
+        foreach ($animes as $anime) {
+            echo "<option value='{$anime->getIdAnime()}'>{$anime->getNombre()}</option>";
+        }
+        ?>
+    </select>
+
+    <button type="submit" name="eliminar">Eliminar Anime</button>
+
+</form>
+
+
+
+
+
+
+
 
 </body>
 </html>

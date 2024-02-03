@@ -1,6 +1,6 @@
 <?php
 include_once('../Dominio/Genero.php');
-include_once('../Negocio/AccesoDatos.php');
+
 
 class GeneroNegocio {
     public function listarGenero(){

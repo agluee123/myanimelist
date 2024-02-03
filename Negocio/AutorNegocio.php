@@ -1,6 +1,6 @@
 <?php
 include_once('../Dominio/Autor.php');
-include_once('../Negocio/AccesoDatos.php');
+
 
 
 ////DEBERIA SER UN METODO, DE INSERTAR AUTOR, CON ALGUNA VALIDACION, PARA CORROBORAR QUE NO SE CARGUE EL MISMO AUTOR EN LA DB.

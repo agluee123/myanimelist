@@ -18,11 +18,10 @@ $generos = $generoNegocio->listarGenero();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $animeNegocio = new AnimeNegocio();
-
+    if (isset($_POST['agregar'])) {
     
     $nuevoAnime = new Anime();
-
-    
+ 
     $nuevoAnime->setNombre($_POST['nombre']);
     $nuevoAnime->setDescripcion($_POST['descripcion']);
     $nuevoAnime->setCapitulos($_POST['capitulos']);
@@ -37,6 +36,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
     $animeNegocio->agregar($nuevoAnime);
 
+    }
+
 }
+
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $animeNegocio = new AnimeNegocio();
+    
+        if (isset($_POST['modificar'])) {
+            $idAnime = $_POST['anime_id'];
+    
+            $animeActualizado = new Anime();
+            $animeActualizado->setIdAnime($idAnime);
+            $animeActualizado->setNombre($_POST['nuevo_nombre']);
+            $animeActualizado->setDescripcion($_POST['nueva_descripcion']);
+            $animeActualizado->setCapitulos($_POST['nuevos_capitulos']);
+            $animeActualizado->setEstado($_POST['nuevo_estado']);
+            $animeActualizado->setImagenUrl($_POST['nueva_imagen_url']);
+            $animeActualizado->setTipo($_POST['nuevo_tipo']);
+            $animeActualizado->setTomo($_POST['nuevo_tomo']);
+            $animeActualizado->setIdAutor($_POST['nuevo_id_autor']);
+            $animeActualizado->setIdGenero($_POST['nuevo_id_genero']);
+    
+            $animeNegocio->modificarAnime($animeActualizado);
+        }
+    }
+    
+
+
+
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $animeNegocio = new AnimeNegocio();
+
+    if (isset($_POST['eliminar'])) {
+       
+        $idAnime = $_POST['anime_id'];
+
+        $animeNegocio->eliminarAnime($idAnime);
+    }
+}
+
+
+
+
+
 
 ?>
