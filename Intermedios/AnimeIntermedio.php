@@ -36,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
     $animeNegocio->agregar($nuevoAnime);
 
+    header("Location: ../Presentacion/adminAnime.php");
+
     }
 
 }
@@ -61,12 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $animeActualizado->setIdGenero($_POST['nuevo_id_genero']);
     
             $animeNegocio->modificarAnime($animeActualizado);
+            header("Location: ../Presentacion/adminAnime.php");
         }
+        
     }
     
-
-
-
 
 
 
@@ -78,11 +79,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idAnime = $_POST['anime_id'];
 
         $animeNegocio->eliminarAnime($idAnime);
+
+        header("Location: ../Presentacion/adminAnime.php");
     }
 }
 
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_editar'])) {
+ 
+    $animeNegocio=new animeNegocio();
 
+if (isset($_POST['anime_id'])) {
+    $anime_id = $_POST['anime_id'];
+
+    $anime = $animeNegocio->obtenerPorId($anime_id);
+  
+}
+}
 
 
 

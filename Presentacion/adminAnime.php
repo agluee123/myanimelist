@@ -12,13 +12,20 @@ include_once ("../Intermedios/AnimeIntermedio.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <link rel="stylesheet" href="styles/adminAnime.css">
 </head>
 <body>
+    
+    <div class="navbar">
+            <div class="animelist">AnimeList</div>
+            <div class="button-container">
+                <button class="button"><a href="animeVista.php">Inicio</a></button>
+                <button class="button">perfil</button>
+            </div>
+    </div>   
 
-
+    <form method="post" action="adminAnime.php" class="anime-form">
     <h2>Agregar Anime</h2>
-
-<form method="post" action="adminAnime.php">
     <label for="nombre">Nombre del Anime:</label>
     <input type="text" id="nombre" name="nombre" required>
 
@@ -97,71 +104,82 @@ include_once ("../Intermedios/AnimeIntermedio.php");
 </form>
 
 
-<h3>Editar</h3>
 
-<form method="post" action="../Intermedios/animeIntermedio.php">
+<?php if (!empty($animes)): ?>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Anime</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Capítulos</th>
+                <th>Estado</th>
+                <th>Tipo</th>
+                <th>Tomo</th>
+                <th>Autor</th>
+                <th>Género</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($animes as $anime): ?>
+                <tr>
+                    <td><?php echo $anime->getIdAnime(); ?></td>
+                    <td><?php echo $anime->getNombre(); ?></td>
+                    <td><?php echo $anime->getDescripcion(); ?></td>
+                    <td><?php echo $anime->getCapitulos(); ?></td>
+                    <td><?php echo $anime->getEstado(); ?></td>
+                    <td><?php echo $anime->getTipo(); ?></td>
+                    <td><?php echo $anime->getTomo(); ?></td>
+                    <td>
+                        <?php
+                        if (empty($autores)) {
+                            echo 'No hay datos disponibles';
+                        } else {
+                            foreach ($autores as $autor) {
+                                if (isset($anime) && $anime->getIdAutor() == $autor->getIdAutor()) {
+                                    echo $autor->getNombreAutor();
+                                    break;
+                                }
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if (empty($generos)) {
+                            echo 'No hay datos disponibles';
+                        } else {
+                            foreach ($generos as $genero) {
+                                if (isset($anime) && $anime->getIdGenero() == $genero->getIdGenero()) {
+                                    echo $genero->getNombreGenero();
+                                    break;
+                                }
+                            }
+                        }
+                        ?>
+                    </td>
 
-    <label for="nuevo_id_genero"> ID anime:</label>
-    <input type="number" name="anime_id" value="">
-    <br>
-
-    <label for="nuevo_nombre">modificar Nombre:</label>
-    <input type="text" name="nuevo_nombre" required>
-
-    <label for="nueva_descripcion">modificar  Descripción:</label>
-    <textarea name="nueva_descripcion" required></textarea>
-    <br>
-    <label for="nuevos_capitulos">modificar Capítulos:</label>
-    <input type="text" name="nuevos_capitulos">
-
-    <label for="nuevo_estado">modificar Estado:</label>
-    <input type="text" name="nuevo_estado">
-    <br>
-    <label for="nueva_imagen_url">modificar URL de la Imagen:</label>
-    <input type="text" name="nueva_imagen_url">
-
-    <label for="nuevo_tipo">modificar Tipo:</label>
-    <input type="text" name="nuevo_tipo">
-    <br>
-    <label for="nuevo_tomo">modificar Tomo:</label>
-    <input type="text" name="nuevo_tomo">
-    <br>
-    <label for="nuevo_id_autor">modificar ID del Autor:</label>
-    <input type="text" name="nuevo_id_autor">
-
-    <label for="nuevo_id_genero">modificar ID del Género:</label>
-    <input type="text" name="nuevo_id_genero">
-    <br>
-    <label for="nuevo_id_genero"> ID anime:</label>
-    <input type="number" name="anime_id" value="">
-
-    <input type="submit" name="modificar" value="Modificar Anime">
-</form>
-
-
-
-
-
-<h2>eliminar anime</h2>
-
-<form method="POST" action="../Intermedios/animeIntermedio.php">
-    <label for="anime_id">Seleccionar Anime a eliminar:</label>
-    <select name="anime_id" required>
-        <?php
-        foreach ($animes as $anime) {
-            echo "<option value='{$anime->getIdAnime()}'>{$anime->getNombre()}</option>";
-        }
-        ?>
-    </select>
-
-    <button type="submit" name="eliminar">Eliminar Anime</button>
-
-</form>
-
-
-
-
-
+                    <td>
+                        
+                        <form method="POST" action="editarAnime.php">
+                            <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
+                            <button type="submit" name="id_editar">Editar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="../Intermedios/animeIntermedio.php">
+                            <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
+                            <button type="submit" name="eliminar">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>No hay animes disponibles.</p>
+<?php endif; ?>
 
 
 
