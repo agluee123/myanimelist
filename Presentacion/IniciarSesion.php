@@ -25,6 +25,8 @@ include_once ("../intermedios/UsuarioIntermedio.php");
         <br>
         <button type="submit" name="Inicio Sesion">Iniciar Sesion</button>
     </form>
+
+    
 </body>
 
 </html>

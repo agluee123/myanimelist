@@ -13,7 +13,7 @@ class UsuarioNegocio{
         
         $nombre=$nuevo->getNombre();
         $email=$nuevo->getEmail();
-        $contraseña=$nuevo->getContraseña();
+        $contraseña = password_hash($nuevo->getContraseña(), PASSWORD_DEFAULT); 
         $tipo_usuario=$nuevo->getTipoUsuario();
 
         mysqli_stmt_execute($stmt);
@@ -56,53 +56,50 @@ class UsuarioNegocio{
         
 
     public function IniciarSesion(usuario $usuario){
-        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
-        $email=$usuario->getEmail();
-        $contraseña=$usuario->getContraseña();
-
-        $query = ("SELECT id_usuario,email,nombre,contraseña,tipo_usuario FROM usuario WHERE email=? and contraseña=?"); 
-        $stmt = mysqli_prepare($conexion, $query);
-        mysqli_stmt_bind_param($stmt, "ss", $email,$contraseña);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
-
-        //VERIFICA SI EXISTE
-        if (mysqli_stmt_num_rows($stmt) > 0) {
-            mysqli_stmt_bind_result($stmt, $idUsuario, $dbEmail, $nombre, $dbContraseña, $tipoUsuario);
-            mysqli_stmt_fetch($stmt);
-
+            $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+            $email = $usuario->getEmail();
+            $contraseña = $usuario->getContraseña();
         
-            if (password_verify($dbEmail, $dbContraseña)) {
-                //SI LOS DATOS SON VALIDOS, INICIA SESION
-                session_start();
-                $_SESSION['email'] = $dbEmail;
-                $_SESSION['contraseña']=$dbContraseña;
-                
-                
-    
-                // Puedes almacenar más información del usuario en la sesión según sea necesario
-    
-                mysqli_stmt_close($stmt);
-                mysqli_close($conexion);
-    
-                return true; // "TRUE" INICIO DE SESION EXITOSO
+            $query = "SELECT id_usuario, email, nombre, contraseña, tipo_usuario FROM usuario WHERE email=?";
+            $stmt = mysqli_prepare($conexion, $query);
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
+        
+            // Verificar si el usuario existe
+            if (mysqli_stmt_num_rows($stmt) > 0) {
+                mysqli_stmt_bind_result($stmt, $idUsuario, $dbEmail, $nombre, $dbContraseña, $tipoUsuario);
+                mysqli_stmt_fetch($stmt);
+        
+                // Verificar la contraseña
+                if (password_verify($contraseña, $dbContraseña)) {
+                    // Las credenciales son válidas, iniciar sesión
+                    session_start();
+                    $_SESSION['id_usuario'] = $idUsuario;
+                    $_SESSION['email'] = $dbEmail;
+                    $_SESSION['nombre'] = $nombre;
+                    $_SESSION['tipo_usuario'] = $tipoUsuario;
+        
+                    mysqli_stmt_close($stmt);
+                    mysqli_close($conexion);
+        
+                    return true; // Inicio de sesión exitoso
+                }
             }
-        }
-    
-        // SI NO ENCONTRA LAS CREDENCIALES RETORN FALSE
-        mysqli_stmt_close($stmt);
-        mysqli_close($conexion);
-    
-        return false;    
-
+        
+            // Credenciales incorrectas o usuario no encontrado
+            mysqli_stmt_close($stmt);
+            mysqli_close($conexion);
+        
+            return false;
+        
+        
 
 
     }
 
 
-    public function eliminarUsuario(usuario $usuario){
-
-     }
+    
 
     
 

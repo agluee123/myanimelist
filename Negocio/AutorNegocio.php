@@ -32,5 +32,28 @@ class AutorNegocio {
 
     }
 
+    public function InsertarAutor(autor $nuevo){
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+        $query = "INSERT INTO autor (nombre_autor) VALUES (?)";
+        $stmt = mysqli_prepare($conexion, $query);
+
+        mysqli_stmt_bind_param($stmt, "s", $nombre);
+        $nombre=$nuevo->getNombreAutor();
+
+        mysqli_stmt_execute($stmt);
+    
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Autor agregado correctamente";
+        } else {
+            echo "Error al agregar al autor";
+        }
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conexion);
+
+    }
+
+
+
 }
 ?>
