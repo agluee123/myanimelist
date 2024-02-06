@@ -1,5 +1,5 @@
 <?php
-class Autor
+class Lista
 {
     private $id_lista;
     private $nombre;

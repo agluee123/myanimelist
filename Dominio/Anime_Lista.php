@@ -10,7 +10,7 @@ class Anime_Lista{
         return $this->id_anime;
     }
 
-    public function setIdAnime($id_anime)
+    public function setIdAnime($id_anime) 
     {
         $this->id_anime = $id_anime;
     }
