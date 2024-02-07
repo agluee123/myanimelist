@@ -40,11 +40,6 @@ class UsuarioNegocio{
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
     
-        // // if (mysqli_stmt_num_rows($stmt) > 0) {
-        // //     echo "Ya existe un usuario con ese correo electrónico.";
-        // // } else {
-        // //     echo "Puedes crear el usuario con ese correo electrónico.";
-        // // }
 
         $usuarioExiste = (mysqli_stmt_num_rows($stmt) > 0);
     
@@ -93,24 +88,63 @@ class UsuarioNegocio{
         
             return false;
         
-        
+    }
 
+    public function ModificarUsuario(Usuario $actualizado){
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+
+        $query = "UPDATE usuario SET email=?, nombre=?, contraseña=?, tipo_usuario=? WHERE id_Usuario=?";
+
+        $stmt = mysqli_prepare($conexion, $query);
+
+        mysqli_stmt_bind_param($stmt, "ssssi", $email, $nombre, $contraseña, $tipo_usuario, $id_usuario);
+
+        $email=$actualizado->getEmail();
+        $nombre=$actualizado->getNombre();
+        $contraseña=$actualizado->getContraseña();
+        $tipo_usuario=$actualizado->getTipoUsuario();
+        $id_usuario=$actualizado->getIdUsuario();
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Usuario modificado correctamente";
+        } else {
+            echo "Error al modificar el Usuario que usted desea". mysqli_error($conexion);
+        }
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conexion);
 
     }
 
 
-    
-
-    
 
 
 
-    
-    
+    public function ObtenerIdUsuario($id_usuario){
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas de conexión");
 
+        $query = "SELECT id_usuario,email,Nombre,contraseña,tipo_usuario FROM usuario WHERE id_usuario = $id_usuario";
+        $resultado = $conexion->query($query);
+        if ($resultado->num_rows > 0) {
+            $fila = $resultado->fetch_assoc();
+            $usuario = new Usuario();
+            $usuario->setIdUsuario($fila["id_usuario"]);
+            $usuario->setEmail($fila["email"]);
+            $usuario->setNombre($fila["Nombre"]);
+            $usuario->setContraseña($fila["contraseña"]);
+            $usuario->setTipoUsuario($fila["tipo_usuario"]);
+     
 
+            $conexion->close();
+            return $usuario;
+        } else {
+            $conexion->close();
+            return null;
+        }
+    }
 
-}
+    }
+
 
 ?>
 
