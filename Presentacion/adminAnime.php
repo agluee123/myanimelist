@@ -20,7 +20,7 @@ include_once ("../Intermedios/AnimeIntermedio.php");
             <div class="animelist">AnimeList</div>
             <div class="button-container">
                 <button class="button"><a href="animeVista.php">Inicio</a></button>
-                <button class="button">perfil</button>
+                <button class="button"><a href="Perfil.php">perfil</a></button>
             </div>
     </div>   
 

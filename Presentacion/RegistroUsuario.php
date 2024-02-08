@@ -28,7 +28,7 @@ include_once ("../intermedios/UsuarioIntermedio.php");
         <label for="tipo_usuario">Tipo de Usuario:</label>
         <input type="text" name="tipo_usuario" required>
         <br>
-        <button type="submit">Agregar Usuario</button>
+        <button type="submit" name="crear">Agregar Usuario</button>
     </form>
 </body>
 

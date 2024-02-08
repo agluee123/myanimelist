@@ -99,4 +99,17 @@ if (isset($_POST['anime_id'])) {
 
 
 
+if (isset($_GET['anime_id'])) {
+    $anime_id = $_GET['anime_id'];
+
+    
+    $animeNegocio = new animeNegocio();
+    $anime = $animeNegocio->obtenerPorId($anime_id);
+
+    
+}
+
+
+
 ?>
+

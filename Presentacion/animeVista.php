@@ -1,5 +1,7 @@
 <?php
 include_once("../intermedios/AnimeIntermedio.php");
+
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ include_once("../intermedios/AnimeIntermedio.php");
         <div class="animelis">AnimeList</div>
         <div class="button-container">
             <button class="button"><a href="RegistroUsuario.php">Registro</a></button>
-            <button class="button">Iniciar Sesión</button>
+            <button class="button"><a href="Iniciarsesion.php">Iniciar Sesion</a></button>
         </div>
     </div>
 
@@ -28,6 +30,8 @@ include_once("../intermedios/AnimeIntermedio.php");
     <?php if (!empty($animes)) : ?>
         <div class="card-container">
             <?php foreach ($animes as $anime) : ?>
+                <a href="detalleanime.php?anime_id=<?php echo $anime->getIdAnime(); ?>" class="card-link">
+                         
                 <div class="card">
                     <img src="<?php echo $anime->getImagenUrl(); ?>" alt="Anime Cover">
                     <div class="card-content">
@@ -36,13 +40,14 @@ include_once("../intermedios/AnimeIntermedio.php");
                         <div class="info"><?php echo $anime->getEstado(); ?></div>
                     </div>
                 </div>
+            </a>
             <?php endforeach; ?>
             <div>
             <?php else : ?>
                 <p>No hay animes disponibles.</p>
             <?php endif; ?>
 
-            <?php session_start(); // Asegúrate de iniciar la sesión al principio de la página
+            <?php  // Asegúrate de iniciar la sesión al principio de la página
 
             if (isset($_SESSION['id_usuario'])) {
                 // Si el usuario ha iniciado sesión, muestra los datos
@@ -50,21 +55,16 @@ include_once("../intermedios/AnimeIntermedio.php");
                 echo "Email: " . $_SESSION['email'] . "<br>";
                 echo "Nombre: " . $_SESSION['nombre'] . "<br>";
                 echo "Tipo de Usuario: " . $_SESSION['tipo_usuario'] . "<br>";
+                echo "<h4>Mi Perfil</h4>";
+                echo '<button class="button"><a href="perfil.php">Mi Perfil</a></button>';
             } else {
-                // Si el usuario no ha iniciado sesión, puedes mostrar un mensaje o redirigir a otra página
-                echo "No has iniciado sesión.";
+               echo "No has iniciado sesión.";
             }
-            if ($_SESSION['tipo_usuario'] === 'admin') {
+            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
                 // Si el usuario es administrador, mostrar el CRUD
-                // Aquí puedes incluir el código para mostrar el CRUD
-                //echo "Bienvenido Administrador. Aquí está el CRUD.<br>";
-                echo'<button class="button"><a href="adminAnime.php">Administrar</a></button>';
-
-            } else {
-                // Si el usuario es normal, mostrar un mensaje
-                echo "Bienvenido Usuario Normal. No tienes permiso para acceder al CRUD.<br>";
-            }
-        
+                echo '<button class="button"><a href="adminAnime.php">Administrar</a></button>';
+            } 
+            
             ?>
 
 
