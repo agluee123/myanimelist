@@ -28,10 +28,9 @@ session_start();
 
 
     <?php if (!empty($animes)) : ?>
-        <div class="card-container">
-            <?php foreach ($animes as $anime) : ?>
-                <a href="detalleanime.php?anime_id=<?php echo $anime->getIdAnime(); ?>" class="card-link">
-                         
+    <div class="card-container">
+        <?php foreach ($animes as $anime) : ?>
+            <a href="detalleanime.php?anime_id=<?php echo $anime->getIdAnime(); ?>" class="card-link">
                 <div class="card">
                     <img src="<?php echo $anime->getImagenUrl(); ?>" alt="Anime Cover">
                     <div class="card-content">
@@ -41,13 +40,14 @@ session_start();
                     </div>
                 </div>
             </a>
-            <?php endforeach; ?>
-            <div>
-            <?php else : ?>
-                <p>No hay animes disponibles.</p>
-            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+<?php else : ?>
+    <p>No hay animes disponibles.</p>
+<?php endif; ?>
 
-            <?php  // Asegúrate de iniciar la sesión al principio de la página
+
+            <?php  
 
             if (isset($_SESSION['id_usuario'])) {
                 // Si el usuario ha iniciado sesión, muestra los datos
@@ -57,6 +57,11 @@ session_start();
                 echo "Tipo de Usuario: " . $_SESSION['tipo_usuario'] . "<br>";
                 echo "<h4>Mi Perfil</h4>";
                 echo '<button class="button"><a href="perfil.php">Mi Perfil</a></button>';
+                echo "<h4>Cerrar Sesión</h4>";
+                echo '<form action="../Intermedios/logout.php" method="post">';
+                echo '  <input type="submit" value="Cerrar Sesión">';
+                echo '</form>';
+                            
             } else {
                echo "No has iniciado sesión.";
             }
