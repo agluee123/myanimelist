@@ -90,6 +90,7 @@ class UsuarioNegocio{
         
     }
 
+    //HOLA DAII ESTE METODO LO CREE, PARA VER SI PODES CREAR UNA ADMINISTRACION DE USUARIO EN EL FRONT EN TEORIA ESTO DEBERIA MODIFICAR, AUNQUE NO SE LO CREE VIENDO TU CODIGO JAJAJ
     public function ModificarUsuario(Usuario $actualizado){
         $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
 
@@ -119,7 +120,7 @@ class UsuarioNegocio{
 
 
 
-
+    //Y ESTE METODO DEBERIA TRAER A LOS USUARIOS QUE SE ENCUENTRAN EN LA DB JAJAJAJA, AUNQUE PENSANDOLO BIEN, NO COMBIENE MAS CREAR UNA LISTA Y LISTAR TODO ?)
     public function ObtenerIdUsuario($id_usuario){
         $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas de conexión");
 
@@ -143,7 +144,34 @@ class UsuarioNegocio{
         }
     }
 
+
+    //DEBERIA ELIMINAR??? NO SEEEEE JAJAA
+    public function eliminarUsuario($id_usuario){
+
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+
+        $query = "DELETE FROM usuario WHERE id_usuario=?";
+
+        $stmt = mysqli_prepare($conexion, $query);
+
+        mysqli_stmt_bind_param($stmt, "i", $id_usuario);
+
+        mysqli_stmt_execute($stmt);
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Usuario eliminado correctamente";
+        } else {
+            echo "No se puedo eliminar el usuario";
+
+            mysqli_stmt_close($stmt);
+            mysqli_close($conexion);
+        }
+
     }
+
+}
+
+    
 
 
 ?>
