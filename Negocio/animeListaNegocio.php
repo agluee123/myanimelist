@@ -3,18 +3,6 @@ include_once('../Dominio/Anime_Lista.php');
 
 
 class AnimeListasNegocio {
-    public function listarAnimeLista(){
-       
-
-    }
-
-    public function listarListasAnime(){
-
-    }
-
-
-
-
 
     public function agregarAnimeALista($idLista, $idAnime) {
         $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
@@ -43,12 +31,30 @@ class AnimeListasNegocio {
         mysqli_close($conexion);
    
         return "Anime agregado a la lista correctamente.";
-    } 
-
-
-
+    }
     
-
+    
+    public function obtenerAnimesPorLista($idLista) {
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+        
+        $consulta = "SELECT anime.*
+                     FROM anime
+                     INNER JOIN anime_lista ON anime.id_anime = anime_lista.id_anime
+                     WHERE anime_lista.id_lista = ?";
+                     
+        $stmt = mysqli_prepare($conexion, $consulta);
+        mysqli_stmt_bind_param($stmt, "i", $idLista);
+        mysqli_stmt_execute($stmt);
+        
+        $result = mysqli_stmt_get_result($stmt);
+        $animes = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        
+        mysqli_stmt_close($stmt);
+        mysqli_close($conexion);
+        
+        return $animes;
+    }
+    
     public function crearAnimeListas(){
        
 
@@ -62,5 +68,10 @@ class AnimeListasNegocio {
         
     }
 
+
+
 }
+    
+
+
 ?>

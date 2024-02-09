@@ -1,47 +1,44 @@
 <?php
 
-include_once ("../Negocio/animeListaNegocio.php");
-include_once ("../Negocio/ListasNegocio.php");
+include_once("../Negocio/animeListaNegocio.php");
+include_once("../Negocio/ListasNegocio.php");
 
+// Crear instancias de objetos necesarios
+$animeListaNegocio = new animeListasNegocio();
+$listasNegocio = new ListasNegocio();
 
-
+// Verificar si la solicitud es POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-   $animeLista = new animeListasNegocio();
-
+    // Manejar la solicitud para agregar anime a la lista
     if (isset($_POST['agregarAnime'])) {
+        // Verificar si se recibieron correctamente el ID de la lista y el ID del anime
+        if (isset($_POST['lista_id']) && isset($_POST['anime_id'])) {
+            $idLista = $_POST['lista_id'];
+            $idAnime = $_POST['anime_id'];
 
-        
-        $idLista = $_POST['lista_id'];
-        $idAnime = $_POST['anime_id'];
-        
-        var_dump($idLista);
-        var_dump($idAnime);
-        
-        $animeLista->agregarAnimeALista($idLista, $idAnime);
-        header("Location: ../Presentacion/animeVista.php");
-    } else {
-        echo "No se recibió el id_lista correctamente.";
+            // Agregar el anime a la lista
+            $animeListaNegocio->agregarAnimeALista($idLista, $idAnime);
+            header("Location: ../Presentacion/animeVista.php"); // Redirigir después de agregar el anime
+            exit(); // Finalizar la ejecución del script
+        } else {
+            echo "No se recibió el id_lista o el id_anime correctamente.";
+        }
     }
-}
 
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-   
+    // Manejar la solicitud para obtener el ID de la lista
     if (isset($_POST['lista_id'])) {
         $idLista = $_POST['lista_id'];
-      
-        
-    
-
+        // Puedes realizar más acciones relacionadas con el ID de la lista aquí si es necesario
     } else {
         echo "No se recibió el id_lista correctamente.";
     }
 }
 
+// Obtener todas las listas de animes
+$listasUser = $listasNegocio->listarListas();
 
-
+// Ahora, debes obtener los animes asociados a cada lista y pasarlos a la capa de presentación
 
 ?>
+
