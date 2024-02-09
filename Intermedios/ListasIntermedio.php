@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
     $ListaNegocio->crearListas($nuevaLista);
 
-    header("Location: ../Presentacion/Listas.php");
+  
 
     }
 

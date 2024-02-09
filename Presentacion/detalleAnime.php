@@ -13,7 +13,7 @@ include_once ("../Intermedios/ListasIntermedio.php");
 </head>
 <body>
 
-<form method="post" action="../Intermedios/animeIntermedio.php" class="detail-form">
+<form  action="" class="detail-form">
     <h2>Detalles del Anime</h2>
 
     <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
@@ -64,9 +64,16 @@ include_once ("../Intermedios/ListasIntermedio.php");
                 }
             ?></p>
 
+            <?php    if (isset($_SESSION['id_usuario'])) { ?>
 
+            <form action="../Intermedios/ListaAnimeIntermedio.php" method="POST">
+
+                
+                <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
+                
+            
             <label for="listas">Agregar a listas:</label>
-                <select name="listas" required>
+                <select name="lista_id" required>
 
                     <?php
                     if (empty($TodasLaslistas)) {
@@ -74,10 +81,10 @@ include_once ("../Intermedios/ListasIntermedio.php");
                     } else {
                         foreach ($TodasLaslistas as $Lista) {
 
-                                if(isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] === $Lista->getIdUsuario()){
+                                if(isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $Lista->getIdUsuario()){
                                 
-                                    echo "<option value=" . $Lista->getNombre() . "</option>" ;
-                                   
+                                  
+                                    echo '<option value="' . $Lista->getIdLista() . '">' . $Lista->getNombre() . '</option>';
 
                                 }
 
@@ -86,7 +93,15 @@ include_once ("../Intermedios/ListasIntermedio.php");
 
                     ?>
                 </select>
-            
+
+                 <?php }  ?>  
+                 
+                 <button type="submit" name="AgregarAnime">Agregar Anime</button>
+
+             </form>
+                 
+                 
+                 
         </div>
     </div>
 </form>
