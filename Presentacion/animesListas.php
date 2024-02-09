@@ -1,5 +1,6 @@
 <?php
 include_once ("../Intermedios/ListasAnimeIntermedio.php");
+include_once ("../Intermedios/ListasIntermedio.php");
 ?>
 
 
@@ -14,14 +15,24 @@ include_once ("../Intermedios/ListasAnimeIntermedio.php");
 
 
 
-<?php
-if ($DetalleLista) {
-    echo "ID Lista: " . $DetalleLista->getIdLista() . "<br>";
-    echo "Nombre Lista: " . $DetalleLista->getNombre() . "<br>";
-} else {
-    echo "La lista no existe.";
-}
-?>
+<?php foreach ($listasUser as $lista) : ?>
+   
+        <?php
+        if( $lista->getIdLista() == $idLista ){ ?>
+            <h3>Lista:  
+                <?php echo $lista->getNombre(); ?>
+            </h3>
+            
+            <input type="hidden" name="lista_id" value="<?php echo $lista->getIdLista(); ?>">
+            
+        <?php } ?>
+       
+<?php endforeach; ?>
+
+
+
+
+
 
 
 
