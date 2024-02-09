@@ -1,6 +1,6 @@
 <?php
-include_once ("../Dominio/Usuario.php");
-include_once ("../Negocio/usuarioNegocio.php");
+include_once("../Dominio/Usuario.php");
+include_once("../Negocio/usuarioNegocio.php");
 
 // INICIA SESION Y VALIDA SI EL MAIL QUE SE INGRESÓ ESTÁ REGISTRADO
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,7 +22,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Credenciales incorrectas. Por favor, inténtalo de nuevo o regístrate.";
     }
 }
-
-
-
-?>

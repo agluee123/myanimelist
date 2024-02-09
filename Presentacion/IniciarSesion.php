@@ -1,6 +1,6 @@
 <?php
 
-include_once ("../intermedios/UsuarioIntermedio.php");
+include_once("../intermedios/UsuarioIntermedio.php");
 
 ?>
 
@@ -16,7 +16,7 @@ include_once ("../intermedios/UsuarioIntermedio.php");
 <body>
     <h2>Iniciar Sesion</h2>
     <form method="POST" action="../intermedios/IniciarSesionIntermedio.php">
-        
+
         <label for="email">Email:</label>
         <input type="email" name="email" required>
         <br>
@@ -26,7 +26,7 @@ include_once ("../intermedios/UsuarioIntermedio.php");
         <button type="submit" name="Inicio Sesion">Iniciar Sesion</button>
     </form>
 
-    
+
 </body>
 
 </html>

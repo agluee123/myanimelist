@@ -1,5 +1,5 @@
 <?php
-include_once ("../Negocio/animeListaNegocio.php");
+include_once("../Negocio/animeListaNegocio.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Verificar si se recibió el ID de la lista a través de la URL
@@ -18,4 +18,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo "No se recibió el ID de la lista correctamente.";
     }
 }
-?>

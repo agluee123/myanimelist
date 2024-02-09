@@ -9,7 +9,7 @@ $listasNegocio = new ListasNegocio();
 
 // Verificar si la solicitud es POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     // Manejar la solicitud para agregar anime a la lista
     if (isset($_POST['agregarAnime'])) {
         // Verificar si se recibieron correctamente el ID de la lista y el ID del anime
@@ -39,6 +39,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $listasUser = $listasNegocio->listarListas();
 
 // Ahora, debes obtener los animes asociados a cada lista y pasarlos a la capa de presentación
-
-?>
-

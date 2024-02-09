@@ -1,16 +1,18 @@
 <?php
-include_once ("../Intermedios/AnimeIntermedio.php");
-include_once ("../Intermedios/ListasIntermedio.php");
+include_once("../Intermedios/AnimeIntermedio.php");
+include_once("../Intermedios/ListasIntermedio.php");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/detalleAnime.css">
 </head>
+
 <body>
 
     <h2>Detalles del Anime</h2>
@@ -19,8 +21,8 @@ include_once ("../Intermedios/ListasIntermedio.php");
 
     <div class="form-row">
         <div class="image-container">
-           
-            <img src="<?php echo  $anime->getImagenUrl() ; ?>" alt="Imagen del Anime">
+
+            <img src="<?php echo  $anime->getImagenUrl(); ?>" alt="Imagen del Anime">
         </div>
 
         <div class="text-container">
@@ -28,66 +30,67 @@ include_once ("../Intermedios/ListasIntermedio.php");
             <p><?php echo  $anime->getNombre(); ?></p>
 
             <h4>Descripción:</h4>
-            <p><?php echo $anime->getDescripcion() ; ?></p>
+            <p><?php echo $anime->getDescripcion(); ?></p>
 
             <h4>Capítulos:</h4>
-            <p><?php echo $anime->getCapitulos() ; ?></p>
+            <p><?php echo $anime->getCapitulos(); ?></p>
 
             <h4>Estado:</h4>
-            <p><?php echo $anime->getEstado() ; ?></p>
+            <p><?php echo $anime->getEstado(); ?></p>
 
             <h4>Tipo:</h4>
-            <p><?php echo $anime->getTipo() ; ?></p>
+            <p><?php echo $anime->getTipo(); ?></p>
 
             <h4>Tomo:</h4>
-            <p><?php echo $anime->getTomo() ; ?></p>
+            <p><?php echo $anime->getTomo(); ?></p>
 
             <h4>Género:</h4>
-            <p><?php 
-            foreach ($generos as $genero) {
-                if (isset($anime) && $anime->getIdGenero() == $genero->getIdGenero()) {
-                    echo $genero->getNombreGenero();
-                    break;
+            <p><?php
+                foreach ($generos as $genero) {
+                    if (isset($anime) && $anime->getIdGenero() == $genero->getIdGenero()) {
+                        echo $genero->getNombreGenero();
+                        break;
+                    }
                 }
-            }
-            
-            ?></p>
+
+                ?></p>
 
             <h4>Autor:</h4>
-            <p><?php  
+            <p><?php
                 foreach ($autores as $autor) {
                     if (isset($anime) && $anime->getIdAutor() == $autor->getIdAutor()) {
                         echo $autor->getNombreAutor();
                         break;
                     }
                 }
-            ?></p>
+                ?></p>
 
-        <form action="../Intermedios/ListasAnimeIntermedio.php" method="POST">
-            <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
-            <label for="listas">Agregar a listas:</label>
-            <select name="lista_id" required>
-                <?php
-                if (empty($TodasLaslistas)) {
-                    echo '<option value="" disabled>No hay datos disponibles</option>';
-                } else {
-                    foreach ($TodasLaslistas as $Lista) {
-                        if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $Lista->getIdUsuario()) {
-                            echo '<option value="' . $Lista->getIdLista() . '">' . $Lista->getNombre() . '</option>';
+            <form action="../Intermedios/ListasAnimeIntermedio.php" method="POST">
+                <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
+                <label for="listas">Agregar a listas:</label>
+                <select name="lista_id" required>
+                    <?php
+                    if (empty($TodasLaslistas)) {
+                        echo '<option value="" disabled>No hay datos disponibles</option>';
+                    } else {
+                        foreach ($TodasLaslistas as $Lista) {
+                            if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $Lista->getIdUsuario()) {
+                                echo '<option value="' . $Lista->getIdLista() . '">' . $Lista->getNombre() . '</option>';
+                            }
                         }
                     }
-                }
-                ?>
-            </select>
-            <button type="submit" name="agregarAnime">Agregar Anime</button>
-        </form>
+                    ?>
+                </select>
+                <button type="submit" name="agregarAnime">Agregar Anime</button>
+            </form>
 
-                 
-                 
-                 
+
+
+
         </div>
     </div>
 
 
 </body>
+
 </html>
