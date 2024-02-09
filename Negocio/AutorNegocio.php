@@ -20,9 +20,7 @@ class AutorNegocio {
                 $aux->setIdAutor($fila["id_autor"]);
                 $aux->setNombreAutor($fila["nombre_autor"]);
                 
-
                 $lista[]=$aux;
-                
                 
             }
         }

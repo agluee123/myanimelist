@@ -33,7 +33,7 @@ class Lista
         return $this->id_usuario;
     }
 
-    public function setNombreAutor($id_usuario)
+    public function setIdUsuario($id_usuario)
     {
         $this->id_usuario = $id_usuario;
     }

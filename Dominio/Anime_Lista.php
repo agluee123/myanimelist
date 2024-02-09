@@ -30,7 +30,7 @@ class Anime_Lista{
         return $this->id_anime_lista;
     }
 
-    public function setdescripcion($id_anime_lista)
+    public function setIdAnimeLista($id_anime_lista)
     {
         $this->id_anime_lista = $id_anime_lista;
     }
