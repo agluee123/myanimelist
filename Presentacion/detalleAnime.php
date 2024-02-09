@@ -67,17 +67,17 @@ include_once ("../Intermedios/ListasIntermedio.php");
 
             <label for="listas">Agregar a listas:</label>
                 <select name="listas" required>
+
                     <?php
                     if (empty($TodasLaslistas)) {
                         echo '<option value="" disabled>No hay datos disponibles</option>';
                     } else {
                         foreach ($TodasLaslistas as $Lista) {
 
-                                if(isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] === $lista->getIdUsuario()){
+                                if(isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] === $Lista->getIdUsuario()){
                                 
+                                    echo "<option value=" . $Lista->getNombre() . "</option>" ;
                                    
-                                     echo $lista->getNombre();
-                                
 
                                 }
 
