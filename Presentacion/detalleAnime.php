@@ -13,7 +13,6 @@ include_once ("../Intermedios/ListasIntermedio.php");
 </head>
 <body>
 
-<form  action="" class="detail-form">
     <h2>Detalles del Anime</h2>
 
     <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
@@ -64,47 +63,31 @@ include_once ("../Intermedios/ListasIntermedio.php");
                 }
             ?></p>
 
-            <?php    if (isset($_SESSION['id_usuario'])) { ?>
-
-            <form action="../Intermedios/ListaAnimeIntermedio.php" method="POST">
-
-                
-                <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
-                
-            
+        <form action="../Intermedios/ListasAnimeIntermedio.php" method="POST">
+            <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
             <label for="listas">Agregar a listas:</label>
-                <select name="lista_id" required>
-
-                    <?php
-                    if (empty($TodasLaslistas)) {
-                        echo '<option value="" disabled>No hay datos disponibles</option>';
-                    } else {
-                        foreach ($TodasLaslistas as $Lista) {
-
-                                if(isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $Lista->getIdUsuario()){
-                                
-                                  
-                                    echo '<option value="' . $Lista->getIdLista() . '">' . $Lista->getNombre() . '</option>';
-
-                                }
-
+            <select name="lista_id" required>
+                <?php
+                if (empty($TodasLaslistas)) {
+                    echo '<option value="" disabled>No hay datos disponibles</option>';
+                } else {
+                    foreach ($TodasLaslistas as $Lista) {
+                        if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == $Lista->getIdUsuario()) {
+                            echo '<option value="' . $Lista->getIdLista() . '">' . $Lista->getNombre() . '</option>';
                         }
                     }
+                }
+                ?>
+            </select>
+            <button type="submit" name="agregarAnime">Agregar Anime</button>
+        </form>
 
-                    ?>
-                </select>
-
-                 <?php }  ?>  
-                 
-                 <button type="submit" name="AgregarAnime">Agregar Anime</button>
-
-             </form>
                  
                  
                  
         </div>
     </div>
-</form>
+
 
 </body>
 </html>
