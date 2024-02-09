@@ -116,8 +116,30 @@ class ListasNegocio
     }
 
 
-    public function eliminarListas()
+    public function eliminarListas($id_lista)
     {
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+
+        $query = "DELETE FROM lista WHERE id_lista=?";
+
+        $stmt = mysqli_prepare($conexion, $query);
+
+        mysqli_stmt_bind_param($stmt, "i", $id_lista);
+
+        mysqli_stmt_execute($stmt);
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Lista eliminada correctamente";
+        } else {
+            echo "Error al eliminar la lista seleccionada";
+        }
+
+        mysqli_stmt_close($stmt);
+        mysqli_close($conexion);
+
+
+        
+
     }
 
     public function modificarListas()
