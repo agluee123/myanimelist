@@ -29,9 +29,10 @@ include_once("../Negocio/animeListaNegocio.php")
                     <?php foreach ($animes as $anime) : ?>
                         <li>
                             <strong>Nombre:</strong> <?php echo isset($anime['Nombre']) ? $anime['Nombre'] : 'Nombre no disponible'; ?><br>
+                            <strong>Imagen:</strong> <?php echo isset($anime['imagen_url']) ? $anime['imagen_url'] : 'Estado no disponible'; ?><br>
                             <strong>Descripción:</strong> <?php echo isset($anime['Descripcion']) ? $anime['Descripcion'] : 'descripcion no disponible'; ?><br>
-                            <strong>Descripción:</strong> <?php echo isset($anime['Capitulos']) ? $anime['Capitulos'] : 'descripcion no disponible'; ?><br>
-                            <strong>Estado:</strong> <?php echo isset($anime['Estado']) ? $anime['Estado'] : 'descripcion no disponible'; ?><br>
+                            <strong>Descripción:</strong> <?php echo isset($anime['Capitulos']) ? $anime['Capitulos'] : 'Capitulos no disponible'; ?><br>
+                            <strong>Estado:</strong> <?php echo isset($anime['Estado']) ? $anime['Estado'] : 'Estado no disponible'; ?><br>
                         </li>
                     <?php endforeach; ?>
                 </ul>

@@ -43,7 +43,7 @@ include_once("../Intermedios/ListasIntermedio.php");
 
             <form action="animesListas.php" method="POST">
                 <input type="hidden" name="lista_id" value="<?php echo $lista->getIdLista(); ?>">
-                <button type="submit" name="action" value="agregarAnimes">Agregar Animes</button>
+                <button type="submit" name="action" value="agregarAnimes">Ver animes de la lista</button>
             </form>
 
             <form action="listas.php" method="POST">
