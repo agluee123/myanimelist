@@ -36,19 +36,15 @@ include_once("../Intermedios/ListasIntermedio.php");
     <h4>Mis listas</h4>
 
 
+    <button class="button"><a href="animesListas.php">ver mis listas</a></button>
 
     <?php foreach ($listasUser as $lista) : ?>
         <li>
             <?php echo $lista->getNombre(); ?>
 
-            <form action="animesListas.php" method="POST">
-                <input type="hidden" name="lista_id" value="<?php echo $lista->getIdLista(); ?>">
-                <button type="submit" name="action" value="agregarAnimes">Ver animes de la lista</button>
-            </form>
-
             <form action="listas.php" method="POST">
                 <input type="hidden" name="lista_id" value="<?php echo $lista->getIdLista(); ?>">
-                <button type="submit" name="action" value="eliminarLista" onclick="return confirm('¿Seguro que quieres eliminar esta lista?')">Eliminar Lista</button>
+                <button type="submit" name="eliminarLista" value="eliminarLista" onclick="return confirm('¿Seguro que quieres eliminar esta lista?')">Eliminar Lista</button>
             </form>
         </li>
     <?php endforeach; ?>

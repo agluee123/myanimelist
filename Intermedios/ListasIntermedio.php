@@ -28,3 +28,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ListaNegocio->crearListas($nuevaLista);
     }
 }
+
+
+
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if(isset($_POST['eliminarLista'])){
+    $ListasNegocio = new ListasNegocio();
+    
+    if (isset($_POST['lista_id'])) {
+        $idLista = $_POST['lista_id'];
+        $ListasNegocio->eliminarListas($idLista);
+    }
+
+}
+header("Location: ../Presentacion/Listas.php");
+}
+
+
+
