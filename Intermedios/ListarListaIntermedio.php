@@ -12,8 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         // Obtener los animes asociados a la lista específica
         $animes = $animeLista->obtenerAnimesPorLista($idLista);
 
-        // Enviar los datos a la capa de presentación para mostrarlos en la interfaz de usuario
-        include_once("../Presentacion/mostrarAnimesPorLista.php");
+         include_once("../Presentacion/mostrarAnimesPorLista.php");
     } else {
         echo "No se recibió el ID de la lista correctamente.";
     }

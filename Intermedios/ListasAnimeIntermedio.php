@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "No se recibió el id_lista o el id_anime correctamente.";
         }
     }
-
+    
     // Manejar la solicitud para obtener el ID de la lista
     if (isset($_POST['lista_id'])) {
         $idLista = $_POST['lista_id'];
@@ -38,4 +38,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Obtener todas las listas de animes
 $listasUser = $listasNegocio->listarListas();
 
-// Ahora, debes obtener los animes asociados a cada lista y pasarlos a la capa de presentación
+
+
+if (isset($_POST['eliminarAnimeDeLista'])) {
+
+
+    if (isset($_POST['lista_id']) && isset($_POST['animeLista_id'])) {
+        $idLista = $_POST['lista_id'];
+        $idAnime = $_POST["animeLista_id"];
+
+        $AnimeListasNegocio = new AnimeListasNegocio ();
+
+        $animeListaNegocio->eliminarAnimeDeLista($idAnime,$idLista);
+        header("Location: ../Presentacion/animesListas.php"); 
+        exit(); 
+    } else {
+        echo "No se recibió el id_lista o el id_anime correctamente.";
+    }
+}
+
+
+
+?>
+
+
+

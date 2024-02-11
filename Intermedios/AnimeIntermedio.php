@@ -102,3 +102,39 @@ if (isset($_GET['anime_id'])) {
     $animeNegocio = new animeNegocio();
     $anime = $animeNegocio->obtenerPorId($anime_id);
 }
+
+
+
+
+
+$animeNegocio = new animeNegocio();
+
+// Verificar si el ID del anime está presente en la solicitud
+if (isset($_GET['anime_id'])) {
+    // Obtén el ID del anime desde la solicitud
+    $animeId = $_GET['anime_id'];
+
+    // Obtén el objeto Anime usando el ID
+    $anime = $animeNegocio->obtenerPorId($animeId);
+
+    // Verificar si se pudo obtener el objeto Anime
+    if ($anime) {
+        // Obtén el promedio de votos para ese anime
+        $promedio = $animeNegocio->getPromedioVotos($anime);
+
+        // Resto del código relacionado con la visualización del detalle del anime, incluyendo la lógica de las estrellas
+
+    } else {
+        // Manejar el caso en el que no se pueda obtener el objeto Anime
+        echo "Error: No se pudo obtener el anime.";
+    }
+} else {
+    // Manejar el caso en el que el ID del anime no está presente en la solicitud
+    echo "Error: ID del anime no presente en la solicitud.";
+}
+
+
+
+   
+
+?>

@@ -57,4 +57,29 @@ class AnimeListasNegocio
 
         return $animes;
     }
+
+    
+    public function eliminarAnimeDeLista($id_anime, $id_lista) {
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+    
+        $query = "DELETE FROM anime_lista WHERE id_anime = ? AND id_lista = ?";
+    
+        $stmt = mysqli_prepare($conexion, $query);
+    
+        mysqli_stmt_bind_param($stmt, "ii", $id_anime, $id_lista);
+    
+        mysqli_stmt_execute($stmt);
+    
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Anime eliminado correctamente de la lista";
+        } else {
+            echo "Error al eliminar el anime de la lista";
+        }
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conexion);
+    }
+    
+
+
 }

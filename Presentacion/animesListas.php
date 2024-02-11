@@ -1,7 +1,9 @@
 <?php
 include_once("../Intermedios/ListasAnimeIntermedio.php");
 include_once("../Intermedios/ListasIntermedio.php");
-include_once("../Negocio/animeListaNegocio.php")
+include_once("../Negocio/animeListaNegocio.php");
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,13 +29,18 @@ include_once("../Negocio/animeListaNegocio.php")
             ?>
                 <ul>
                     <?php foreach ($animes as $anime) : ?>
-                        <li>
+                        
                             <strong>Nombre:</strong> <?php echo isset($anime['Nombre']) ? $anime['Nombre'] : 'Nombre no disponible'; ?><br>
                             <strong>Imagen:</strong> <?php echo isset($anime['imagen_url']) ? $anime['imagen_url'] : 'Estado no disponible'; ?><br>
                             <strong>Descripción:</strong> <?php echo isset($anime['Descripcion']) ? $anime['Descripcion'] : 'descripcion no disponible'; ?><br>
-                            <strong>Descripción:</strong> <?php echo isset($anime['Capitulos']) ? $anime['Capitulos'] : 'Capitulos no disponible'; ?><br>
+                            <strong>Capitulos:</strong> <?php echo isset($anime['Capitulos']) ? $anime['Capitulos'] : 'Capitulos no disponible'; ?><br>
                             <strong>Estado:</strong> <?php echo isset($anime['Estado']) ? $anime['Estado'] : 'Estado no disponible'; ?><br>
-                        </li>
+                        
+                        <form action="animesListas.php" method="POST">
+                            <input type="hidden" name="animeLista_id" value="<?php echo $anime['id_anime']; ?>">
+                            <input type="hidden" name="lista_id" value="<?php echo $lista->getIdLista(); ?>">
+                            <button type="submit" name="eliminarAnimeDeLista" value="eliminarAnime" onclick="return confirm('¿Seguro que quieres eliminar <?php echo $anime['Nombre']; ?> de esta lista?')">Eliminar Anime</button>
+                        </form>       
                     <?php endforeach; ?>
                 </ul>
             <?php else : ?>
@@ -43,6 +50,7 @@ include_once("../Negocio/animeListaNegocio.php")
     <?php else : ?>
         <p>No hay listas de animes disponibles.</p>
     <?php endif; ?>
+
 
 </body>
 

@@ -1,5 +1,4 @@
 
-
 *{
     box-sizing: border-box;
 }
@@ -52,4 +51,110 @@ h4, p {
 h4 {
     color: #fffffd; 
     margin: 10px 0;
+}
+
+
+.votacion {
+    border: none;
+    text-align: left;
+    direction: rtl; 
+}
+
+.votacion input {
+    display: none;
+}
+
+.votacion label {
+    display: inline-block;
+    font-size: 2em;
+}
+
+.votacion input:checked ~ label,
+.votacion:not(:checked) label:hover,
+.votacion:not(:checked) label:hover ~ label {
+    color: gold;
+}
+
+.votacion input:checked + label:hover,
+.votacion input:checked ~ label:hover,
+.votacion label:hover ~ input:checked ~ label,
+.votacion input:checked ~ label:hover ~ label {
+    color: yellow;
+}
+
+
+
+/*estilos estrellas primera version*/
+.votacion-anime {
+    border: none;
+    text-align: left;
+    direction: rtl;
+}
+
+.votacion-anime span {
+    display: inline-block;
+    font-size: 2em;
+    color: #ddd; 
+}
+
+/* Estrellas resaltadas */
+.votacion-anime span.full-star {
+    color: gold;
+}
+
+/* Estrellas no resaltadas */
+.votacion-anime span.empty-star {
+    color: #ddd; 
+}
+
+
+
+
+/*estilos estrellas segunda version*/
+
+
+.votacion-animes {
+    border: none;
+    text-align: left;
+    direction: rtl;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap; 
+}
+
+.votacion-animes span {
+    display: inline-block;
+    font-size: 2em;
+    color: #ddd; 
+}
+
+
+.votacion-animes span.full-star {
+    color: gold;
+}
+
+
+.votacion-animes span.half-star {
+    color: gold;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.votacion-animes span.half-star:before {
+    content: '\2605'; 
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 50%; 
+    overflow: hidden;
+    color: #ddd; 
+}
+
+/* Estrellas no resaltadas */
+.votacion-animes span.empty-star {
+    color: #ddd; 
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
 }

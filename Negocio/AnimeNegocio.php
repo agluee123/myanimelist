@@ -158,4 +158,18 @@ class animeNegocio
         mysqli_stmt_close($stmt);
         mysqli_close($conexion);
     }
+
+
+    
+   
+    public function getPromedioVotos(Anime $anime) {
+        if ($anime->getTotalVotos() > 0) {
+            return round($anime->getSumaVotos() / $anime->getTotalVotos(), 2);
+        } else {
+            return 0; 
+        }
+    }
+    
+
+
 }
