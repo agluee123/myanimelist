@@ -11,22 +11,26 @@ include_once("../intermedios/UsuarioIntermedio.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Sesion</title>
+    <link rel="stylesheet" href="styles/IniciarSesion.css">
 </head>
 
-<body>
-    <h2>Iniciar Sesion</h2>
-    <form method="POST" action="../intermedios/IniciarSesionIntermedio.php">
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-        <br>
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" name="contraseña" required>
-        <br>
-        <button type="submit" name="Inicio Sesion">Iniciar Sesion</button>
+<main class="container">
+    <form class="form" action="../intermedios/IniciarSesionIntermedio.php" method="POST">
+        <div class="input">
+            <input id="email" name="email" type="email" class="input__element" placeholder=" " />
+            <label class="input__label" for="email">Email</label>
+        </div>
+        <div class="input">
+            <input id="password" name="contraseña" type="password" class="input__element" placeholder=" " />
+            <label class="input__label" for="password">Contraseña</label>
+        </div>
+        <button type="submit" class="button">
+            <div class="button__label">Iniciar Sesión</div>
+        </button>
+        <button type="submit" class="button-secondary"  >
+            <div class="button__label">Registrarse</div>
+            
+        </button>
     </form>
-
-
-</body>
-
-</html>
+</main>

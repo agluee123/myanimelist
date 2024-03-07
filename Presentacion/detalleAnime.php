@@ -100,7 +100,7 @@ include_once("../Intermedios/puntuacionIntermedio.php");
             
             <form action="../Intermedios/puntuacionIntermedio.php" method="POST">
                 <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
-                <input type="hidden" name="id_usuario" value="<?php echo $_SESSION['id_usuario']; ?>">
+                <input type="hidden" name="id_usuario" value="<?php echo isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : ''; ?>">
                 <div class="votacion">
                 <?php for ($i = 5; $i >= 1; $i--) : ?>     
                         <input type="radio" id="star<?php echo $i; ?>" name="rating" value="<?php echo $i; ?>" />

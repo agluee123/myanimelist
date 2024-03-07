@@ -1,0 +1,137 @@
+html, body {
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222; /* Color de fondo adicional */
+  background-position: center;
+  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
+}
+
+
+.form {
+  display: grid;
+  grid-gap: 36px;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  width: 100%;
+  padding: 25px;
+}
+
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+
+
+.input__element {
+  border: 0;
+  margin: 0;
+  width: 100%;
+ 
+  height: 46px;
+  transition: box-shadow 0.4s ease;
+  padding-left: 10px;
+ 
+  font-size: 16px;
+
+  /* Efecto de sombra cuando está enfocado */
+  &:focus {
+    box-shadow: inset 0 -2px 0 0 #fdee06;
+    outline: none;
+  }
+}
+
+/* Estilos para la etiqueta input */
+.input__label {
+  font-size: 16px;
+  position: absolute;
+  left: 10px;
+  color: rgba(white, 0.4);
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Efecto de movimiento de la etiqueta cuando el input está enfocado o tiene contenido */
+.input__element:focus + .input__label,
+.input__element:not(:placeholder-shown) + .input__label {
+  top: -16px;
+  left: 0;
+  font-size: 14px;
+  transform: translate3d(0, -5px, 0);
+  color:white;
+}
+
+/* Estilos para el botón principal */
+.button {
+  background-color: #fdee06;
+  border: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  height: 50px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  text-transform: uppercase;
+ 
+  padding: 0 20px;
+  transition: background-color 0.2s ease 0.1s;
+
+  /* Efecto de color al pasar el mouse */
+  &:hover {
+    background-color: #555;
+  }
+}
+
+
+
+/* Estilos para el botón principal */
+.button-secondary {
+  background-color: #555;
+  border: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  height: 50px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  text-transform: uppercase;
+ 
+  padding: 0 20px;
+  transition: background-color 0.2s ease 0.1s;
+
+  /* Efecto de color al pasar el mouse */
+  &:hover {
+    background: #fdee06;
+  }
+}
+
+
+
+/* Estilos para la etiqueta dentro del botón */
+.button__label {
+  position: relative;
+  color:#222
+}
+
+
+.button-secondary  .button {
+  margin-top: 5px;
+}
+
