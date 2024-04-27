@@ -103,6 +103,7 @@ html, body {
 
 /* Estilos para el botón principal */
 .button-secondary {
+  text-decoration: none;
   background-color: #555;
   border: 0;
   margin: 0;

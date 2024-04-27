@@ -16,7 +16,7 @@ include_once("../Intermedios/AnimeIntermedio.php");
 
 
 
-    <form method="post" action="../Intermedios/animeIntermedio.php" class="edit-form">
+    <form method="post" action="../Intermedios/animeIntermedio.php" class="edit-form" enctype="multipart/form-data">
         <h3>Editar</h3>
 
         <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
@@ -37,7 +37,8 @@ include_once("../Intermedios/AnimeIntermedio.php");
         <br>
 
         <label for="nueva_imagen_url">Modificar URL de la Imagen:</label>
-        <input type="text" name="nueva_imagen_url" value="<?php echo isset($anime) ? $anime->getImagenUrl() : ''; ?>">
+        <input type="file" name="nueva_imagen_url" value="<?php echo isset($anime) ? $anime->getImagenUrl() : ''; ?>">
+
 
         <label for="nuevo_tipo">Modificar Tipo:</label>
         <input type="text" name="nuevo_tipo" value="<?php echo isset($anime) ? $anime->getTipo() : ''; ?>">
@@ -79,6 +80,8 @@ include_once("../Intermedios/AnimeIntermedio.php");
 
         <input type="submit" name="modificar" value="Modificar Anime">
     </form>
+
+    <?php CargarArchivos(isset($_POST["modificar"])); ?>
 
 
 </body>

@@ -23,7 +23,7 @@ include_once("../Intermedios/puntuacionIntermedio.php");
     <div class="form-row">
         <div class="image-container">
 
-            <img src="<?php echo  $anime->getImagenUrl(); ?>" alt="Imagen del Anime">
+            <img src="Imagen/<?php echo  $anime->getImagenUrl(); ?>" alt="Imagen del Anime">
         </div>
 
         <div class="text-container">
@@ -44,74 +44,76 @@ include_once("../Intermedios/puntuacionIntermedio.php");
 
             <h4>Tomo:</h4>
             <p><?php echo $anime->getTomo(); ?></p>
-            
 
-            <h4>votos:</h4> <p><?php echo $anime->getTotalVotos(); ?></p>
-            <h4>Suma:</h4> <p><?php echo $anime->getSumaVotos(); ?></p>
 
-            
+            <h4>votos:</h4>
+            <p><?php echo $anime->getTotalVotos(); ?></p>
+            <h4>Suma:</h4>
+            <p><?php echo $anime->getSumaVotos(); ?></p>
+
+
             <h4>Promedio Votos:</h4>
-        
-        <div class="votacion-anime">
-        <?php
-        // Calcula el valor redondeado del promedio para establecer el número de estrellas a resaltar
-         $promedioRedondeado = round($promedio);
-         
-         // Muestra las estrellas resaltadas según el promedio redondeado
-         for ($i = 5; $i >= 1; $i--) : ?>
-        <span class="<?php echo $i <= $promedioRedondeado ? 'full-star' : 'empty-star'; ?>" title="<?php echo $i; ?> stars">&#9733;</span>
-        <?php endfor; ?>
-    </div>
-    
-    <h5> <?php echo $anime->getTotalVotos(); ?> Votos</h5>
 
+            <div class="votacion-anime">
+                <?php
+                // Calcula el valor redondeado del promedio para establecer el número de estrellas a resaltar
+                $promedioRedondeado = round($promedio);
 
-    
-            
-    <div class="votacion-animes">
-    <?php
-    // Multiplica el promedio por 2 para obtener un rango de 0 a 10
-    $promedioRango = $promedio * 2;
+                // Muestra las estrellas resaltadas según el promedio redondeado
+                for ($i = 5; $i >= 1; $i--) : ?>
+                    <span class="<?php echo $i <= $promedioRedondeado ? 'full-star' : 'empty-star'; ?>" title="<?php echo $i; ?> stars">&#9733;</span>
+                <?php endfor; ?>
+            </div>
 
-    // Muestra las estrellas resaltadas según el rango
-    for ($i = 5; $i >= 1; $i--) : 
-        if ($promedioRango >= $i * 2) {
-            echo '<span class="full-star" title="' . $i / 2 . ' stars">&#9733;</span>';
-        } elseif ($promedioRango >= ($i * 2 - 1.5)) {
-            echo '<span class="half-star" title="' . $i / 2 . ' stars">&#9733;</span>';
-        } else {
-            echo '<span class="empty-star" title="' . $i / 2 . ' stars">&#9734;</span>';
-        }
-    endfor;
-    ?>
-</div>
+            <h5> <?php echo $anime->getTotalVotos(); ?> Votos</h5>
 
 
 
+
+            <div class="votacion-animes">
+                <?php
+                // Multiplica el promedio por 2 para obtener un rango de 0 a 10
+                $promedioRango = $promedio * 2;
+
+                // Muestra las estrellas resaltadas según el rango
+                for ($i = 5; $i >= 1; $i--) :
+                    if ($promedioRango >= $i * 2) {
+                        echo '<span class="full-star" title="' . $i / 2 . ' stars">&#9733;</span>';
+                    } elseif ($promedioRango >= ($i * 2 - 1.5)) {
+                        echo '<span class="half-star" title="' . $i / 2 . ' stars">&#9733;</span>';
+                    } else {
+                        echo '<span class="empty-star" title="' . $i / 2 . ' stars">&#9734;</span>';
+                    }
+                endfor;
+                ?>
+            </div>
 
 
 
 
 
 
-            
-        <h4>vota por este anime</h4>
-            
-            
+
+
+
+
+            <h4>vota por este anime</h4>
+
+
             <form action="../Intermedios/puntuacionIntermedio.php" method="POST">
                 <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
                 <input type="hidden" name="id_usuario" value="<?php echo isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : ''; ?>">
                 <div class="votacion">
-                <?php for ($i = 5; $i >= 1; $i--) : ?>     
+                    <?php for ($i = 5; $i >= 1; $i--) : ?>
                         <input type="radio" id="star<?php echo $i; ?>" name="rating" value="<?php echo $i; ?>" />
                         <label class="full" for="star<?php echo $i; ?>" title="<?php echo $i; ?> stars">&#9733;</label>
-                <?php endfor; ?>
+                    <?php endfor; ?>
                 </div>
                 <button type="submit" name="submit_voto">Votar</button>
             </form>
 
 
-       
+
 
             <h4>Género:</h4>
             <p><?php
@@ -132,7 +134,7 @@ include_once("../Intermedios/puntuacionIntermedio.php");
                         break;
                     }
                 }
-            ?></p>
+                ?></p>
 
             <form action="../Intermedios/ListasAnimeIntermedio.php" method="POST">
                 <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">

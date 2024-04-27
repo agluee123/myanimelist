@@ -1,16 +1,17 @@
 <?php
-class Anime_Lista{
+class Anime_Lista
+{
     private $id_anime;
     private $id_lista;
     private $id_anime_lista;
- 
+
 
     public function getIdAnime()
     {
         return $this->id_anime;
     }
 
-    public function setIdAnime($id_anime) 
+    public function setIdAnime($id_anime)
     {
         $this->id_anime = $id_anime;
     }
@@ -35,6 +36,3 @@ class Anime_Lista{
         $this->id_anime_lista = $id_anime_lista;
     }
 }
-
-
-?>

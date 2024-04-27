@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nuevoAnime->setDescripcion($_POST['descripcion']);
         $nuevoAnime->setCapitulos($_POST['capitulos']);
         $nuevoAnime->setEstado($_POST['estado']);
-        $nuevoAnime->setImagenUrl($_POST['imagen_url']);
+        $nuevoAnime->setImagenUrl($_FILES['imagen_url']['name']);
         $nuevoAnime->setTipo($_POST['tipo']);
         $nuevoAnime->setTomo($_POST['tomo']);
         $nuevoAnime->setIdAutor($_POST['id_autor']);
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $animeActualizado->setDescripcion($_POST['nueva_descripcion']);
         $animeActualizado->setCapitulos($_POST['nuevos_capitulos']);
         $animeActualizado->setEstado($_POST['nuevo_estado']);
-        $animeActualizado->setImagenUrl($_POST['nueva_imagen_url']);
+        $animeActualizado->setImagenUrl($_FILES['nueva_imagen_url']["name"]);
         $animeActualizado->setTipo($_POST['nuevo_tipo']);
         $animeActualizado->setTomo($_POST['nuevo_tomo']);
         $animeActualizado->setIdAutor($_POST['nuevo_id_autor']);
@@ -133,8 +133,35 @@ if (isset($_GET['anime_id'])) {
     echo "Error: ID del anime no presente en la solicitud.";
 }
 
+function CargarArchivos($issetPost)
+{
+    if ($issetPost) {
+        if (isset($_FILES['imagen_url']) && $_FILES['imagen_url']['error'] === UPLOAD_ERR_OK) {
+            $archivo_nombre = $_FILES['imagen_url']['name'];
+            $archivo_tmp = $_FILES['imagen_url']['tmp_name'];
+            $archivo_destino = 'Imagen/' . $archivo_nombre;
+            if (move_uploaded_file($archivo_tmp, $archivo_destino)) {
+                echo "La imagen se ha cargado correctamente en la carpeta de destino.";
+            } else {
+                echo "Hubo un error al mover la imagen a la carpeta de destino.";
+            }
+        }
+        
+        if (isset($_FILES['nueva_imagen_url']) && $_FILES['nueva_imagen_url']['error'] === UPLOAD_ERR_OK) {
+            $archivo_nombre = $_FILES['nueva_imagen_url']['name'];
+            $archivo_tmp = $_FILES['nueva_imagen_url']['tmp_name'];
+            $archivo_destino = '../Presentacion/Imagen/' . $archivo_nombre;
+            if (move_uploaded_file($archivo_tmp, $archivo_destino)) {
+                echo "La nueva imagen se ha cargado correctamente en la carpeta de destino.";
+            } else {
+                echo "Hubo un error al mover la nueva imagen a la carpeta de destino.";
+            }
+        }
+    }
+}
 
 
-   
+CargarArchivos(isset($_POST["agregar"]));
+CargarArchivos(isset($_POST["modificar"]));
 
-?>
+

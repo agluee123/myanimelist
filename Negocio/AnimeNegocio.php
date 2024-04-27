@@ -160,16 +160,14 @@ class animeNegocio
     }
 
 
-    
-   
-    public function getPromedioVotos(Anime $anime) {
+
+
+    public function getPromedioVotos(Anime $anime)
+    {
         if ($anime->getTotalVotos() > 0) {
             return round($anime->getSumaVotos() / $anime->getTotalVotos(), 2);
         } else {
-            return 0; 
+            return 0;
         }
     }
-    
-
-
 }

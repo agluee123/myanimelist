@@ -32,7 +32,7 @@ session_start();
             <?php foreach ($animes as $anime) : ?>
                 <a href="detalleanime.php?anime_id=<?php echo $anime->getIdAnime(); ?>" class="card-link">
                     <div class="card">
-                        <img src="<?php echo $anime->getImagenUrl(); ?>" alt="Anime Cover">
+                        <img src="Imagen/<?php echo $anime->getImagenUrl(); ?>" alt="Anime Cover">
                         <div class="card-content">
                             <div class="title"><?php echo $anime->getNombre(); ?></div>
                             <div class="info">Capitulos: <?php echo $anime->getCapitulos(); ?></div>

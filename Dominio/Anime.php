@@ -136,8 +136,4 @@ class anime
     {
         $this->total_votos = $total_votos;
     }
-
-
 }
-
-?>

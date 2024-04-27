@@ -4,6 +4,7 @@ include_once("../Negocio/animeNegocio.php");
 include_once("../Negocio/autorNegocio.php");
 include_once("../Negocio/generoNegocio.php");
 include_once("../Intermedios/AnimeIntermedio.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ include_once("../Intermedios/AnimeIntermedio.php");
         </div>
     </div>
 
-    <form method="post" action="adminAnime.php" class="anime-form">
+    <form method="post" action="adminAnime.php" class="anime-form" enctype="multipart/form-data"><!--esto sirve para archivos de imagen-->
         <h2>Agregar Anime</h2>
         <label for="nombre">Nombre del Anime:</label>
         <input type="text" id="nombre" name="nombre" required>
@@ -67,7 +68,10 @@ include_once("../Intermedios/AnimeIntermedio.php");
         <br>
 
         <label for="imagen_url">URL de la Imagen:</label>
-        <input type="text" id="imagen_url" name="imagen_url" required>
+        <input type="file" id="imagen_url" name="imagen_url" required>
+
+
+
         <br>
 
         <label for="id_autor">Autor:</label>
@@ -104,6 +108,10 @@ include_once("../Intermedios/AnimeIntermedio.php");
 
         <button type="submit" name="agregar">Agregar Anime</button>
     </form>
+    <?php
+    //permite cargar archivos y que se guarden en una carpeta
+
+    ?>
 
 
 

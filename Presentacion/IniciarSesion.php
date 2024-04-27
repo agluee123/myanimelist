@@ -28,9 +28,8 @@ include_once("../intermedios/UsuarioIntermedio.php");
         <button type="submit" class="button">
             <div class="button__label">Iniciar Sesión</div>
         </button>
-        <button type="submit" class="button-secondary"  >
+        <a href="/animelist/Presentacion/RegistroUsuario.php" class="button-secondary">
             <div class="button__label">Registrarse</div>
-            
-        </button>
+        </a>
     </form>
 </main>

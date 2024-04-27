@@ -26,13 +26,11 @@ include_once("../intermedios/UsuarioIntermedio.php");
                 <label class="input__label" for="email">Email</label>
             </div>
             <div class="input">
-                <input id="contraseña" name="contraseña" type="password" class="input__element" placeholder=" "
-                    required>
+                <input id="contraseña" name="contraseña" type="password" class="input__element" placeholder=" " required>
                 <label class="input__label" for="contraseña">Contraseña</label>
             </div>
             <div class="input">
-                <input id="tipo_usuario" name="tipo_usuario" type="text" class="input__element" placeholder=" "
-                    required>
+                <input id="tipo_usuario" name="tipo_usuario" type="text" class="input__element" placeholder=" " required>
                 <label class="input__label" for="tipo_usuario">Tipo de Usuario</label>
             </div>
             <button type="submit" class="button" name="crear">
