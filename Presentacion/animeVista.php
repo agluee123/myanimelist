@@ -18,22 +18,42 @@ session_start();
 
     <div class="navbar">
         <div class="animelis">AnimeList</div>
-        <?php
-        if (!isset($_SESSION['id_usuario'])) {
 
-            echo '<div class="button-container"><button class="button"><a href="RegistroUsuario.php">Registro</a></button>';
-            echo '<button class="button"><a href="Iniciarsesion.php">Iniciar Sesion</a></button></div>';
-        } else {
-            echo '<button class="button"><a href="perfil.php">Mi Perfil</a></button>';
-            echo '<form action="../Intermedios/logout.php" method="post">';
-            echo '  <input type="submit" value="Cerrar Sesión">';
-            echo '</form>';
-            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
-                // Si el usuario es administrador, mostrar el CRUD
-                echo '<button class="button"><a href="adminAnime.php">Administrar</a></button>';
+
+        <?php if (!isset($_SESSION['id_usuario'])) : ?>
+            <div class="button-container">
+                <button class="button"><a href="Iniciarsesion.php">Iniciar Sesión</a></button>
+                <button class="button"><a href="RegistroUsuario.php">Registrarse</a></button>
+            </div>
+        <?php else : ?>
+            <!-- Mostrar imagen de usuario y opciones de perfil -->
+            <div class='img' id='usuario_icono' onclick="toggleOptions()">
+                <img src="Imagen/usuario.png" class="imagen_usuario">
+                <div id="opciones_usuario" style="display: none;">
+                    <button class="button"><a href="perfil.php">Mi Perfil</a></button>
+                    <form action="../Intermedios/logout.php" method="post">
+                        <input type="submit" value="Cerrar Sesión">
+                    </form>
+                    <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
+                        <button class="button"><a href="adminAnime.php">Administrar</a></button>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+
+
+        <script>
+            function toggleOptions() {
+                var opcionesUsuario = document.getElementById("opciones_usuario");
+                if (opcionesUsuario.style.display === "none" || opcionesUsuario.style.display === "") {
+                    opcionesUsuario.style.display = "block";
+                } else {
+                    opcionesUsuario.style.display = "none";
+                }
             }
-        }
-        ?>
+        </script>
+    </div>
 
     </div>
 
