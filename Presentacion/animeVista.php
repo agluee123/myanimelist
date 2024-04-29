@@ -18,10 +18,23 @@ session_start();
 
     <div class="navbar">
         <div class="animelis">AnimeList</div>
-        <div class="button-container">
-            <button class="button"><a href="RegistroUsuario.php">Registro</a></button>
-            <button class="button"><a href="Iniciarsesion.php">Iniciar Sesion</a></button>
-        </div>
+        <?php
+        if (!isset($_SESSION['id_usuario'])) {
+
+            echo '<div class="button-container"><button class="button"><a href="RegistroUsuario.php">Registro</a></button>';
+            echo '<button class="button"><a href="Iniciarsesion.php">Iniciar Sesion</a></button></div>';
+        } else {
+            echo '<button class="button"><a href="perfil.php">Mi Perfil</a></button>';
+            echo '<form action="../Intermedios/logout.php" method="post">';
+            echo '  <input type="submit" value="Cerrar Sesión">';
+            echo '</form>';
+            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
+                // Si el usuario es administrador, mostrar el CRUD
+                echo '<button class="button"><a href="adminAnime.php">Administrar</a></button>';
+            }
+        }
+        ?>
+
     </div>
 
     <h1>Animes</h1>
@@ -45,31 +58,6 @@ session_start();
     <?php else : ?>
         <p>No hay animes disponibles.</p>
     <?php endif; ?>
-
-
-    <?php
-
-    if (isset($_SESSION['id_usuario'])) {
-        // Si el usuario ha iniciado sesión, muestra los datos
-        echo "ID de Usuario: " . $_SESSION['id_usuario'] . "<br>";
-        echo "Email: " . $_SESSION['email'] . "<br>";
-        echo "Nombre: " . $_SESSION['nombre'] . "<br>";
-        echo "Tipo de Usuario: " . $_SESSION['tipo_usuario'] . "<br>";
-        echo "<h4>Mi Perfil</h4>";
-        echo '<button class="button"><a href="perfil.php">Mi Perfil</a></button>';
-        echo "<h4>Cerrar Sesión</h4>";
-        echo '<form action="../Intermedios/logout.php" method="post">';
-        echo '  <input type="submit" value="Cerrar Sesión">';
-        echo '</form>';
-    } else {
-        echo "No has iniciado sesión.";
-    }
-    if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
-        // Si el usuario es administrador, mostrar el CRUD
-        echo '<button class="button"><a href="adminAnime.php">Administrar</a></button>';
-    }
-
-    ?>
 
 
 </body>

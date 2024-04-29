@@ -26,10 +26,10 @@ include_once("../intermedios/UsuarioIntermedio.php");
             <label class="input__label" for="password">Contraseña</label>
         </div>
         <button type="submit" class="button">
-            <div class="button__label">Iniciar Sesión</div>
+            <div class="iniciar_sesion">Iniciar Sesión</div>
         </button>
         <a href="/animelist/Presentacion/RegistroUsuario.php" class="button-secondary">
-            <div class="button__label">Registrarse</div>
+            <div class="Registrarse">Registrarse</div>
         </a>
     </form>
 </main>
