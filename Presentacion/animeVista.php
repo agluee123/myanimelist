@@ -24,7 +24,7 @@ session_start();
             <div class="button-container">
                 <button class="button"><a href="Iniciarsesion.php">Iniciar Sesión</a></button>
                 <button class="button"><a href="RegistroUsuario.php">Registrarse</a></button>
-                
+
             </div>
         <?php else : ?>
             <!-- Mostrar imagen de usuario y opciones de perfil -->
