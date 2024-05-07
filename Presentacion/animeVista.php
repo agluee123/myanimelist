@@ -24,6 +24,7 @@ session_start();
             <div class="button-container">
                 <button class="button"><a href="Iniciarsesion.php">Iniciar Sesión</a></button>
                 <button class="button"><a href="RegistroUsuario.php">Registrarse</a></button>
+                
             </div>
         <?php else : ?>
             <!-- Mostrar imagen de usuario y opciones de perfil -->
@@ -31,6 +32,7 @@ session_start();
                 <img src="Imagen/usuario.png" class="imagen_usuario">
                 <div id="opciones_usuario" style="display: none;">
                     <button class="button"><a href="perfil.php">Mi Perfil</a></button>
+                    <button class='button'><a href="Listas.php">Listas</a></button>
                     <form action="../Intermedios/logout.php" method="post">
                         <input type="submit" value="Cerrar Sesión">
                     </form>

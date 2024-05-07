@@ -13,6 +13,7 @@ include_once("../Negocio/animeListaNegocio.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listas de Animes</title>
+    <link rel="stylesheet" href="styles/animeListas.css">
 </head>
 
 <body>
@@ -30,17 +31,20 @@ include_once("../Negocio/animeListaNegocio.php");
                 <ul>
                     <?php foreach ($animes as $anime) : ?>
 
-                        <strong>Nombre:</strong> <?php echo isset($anime['Nombre']) ? $anime['Nombre'] : 'Nombre no disponible'; ?><br>
-                        <strong>Imagen:</strong> <?php echo isset($anime['imagen_url']) ? $anime['imagen_url'] : 'Estado no disponible'; ?><br>
-                        <strong>Descripción:</strong> <?php echo isset($anime['Descripcion']) ? $anime['Descripcion'] : 'descripcion no disponible'; ?><br>
-                        <strong>Capitulos:</strong> <?php echo isset($anime['Capitulos']) ? $anime['Capitulos'] : 'Capitulos no disponible'; ?><br>
-                        <strong>Estado:</strong> <?php echo isset($anime['Estado']) ? $anime['Estado'] : 'Estado no disponible'; ?><br>
+                        <div class="card">
+                            <strong>Nombre:</strong> <?php echo isset($anime['Nombre']) ? $anime['Nombre'] : 'Nombre no disponible'; ?><br>
+                            <strong>Imagen:</strong> <?php echo isset($anime['imagen_url']) ? $anime['imagen_url'] : 'Estado no disponible'; ?><br>
+                            <strong>Descripción:</strong> <?php echo isset($anime['Descripcion']) ? $anime['Descripcion'] : 'descripcion no disponible'; ?><br>
+                            <strong>Capitulos:</strong> <?php echo isset($anime['Capitulos']) ? $anime['Capitulos'] : 'Capitulos no disponible'; ?><br>
+                            <strong>Estado:</strong> <?php echo isset($anime['Estado']) ? $anime['Estado'] : 'Estado no disponible'; ?><br>
+                            <strong>Imagen:</strong><img src="imagen/<?php echo isset($anime['imagen_url']) ? $anime['imagen_url'] : 'Estado no disponible'; ?>" alt="Anime Cover">
 
-                        <form action="animesListas.php" method="POST">
-                            <input type="hidden" name="animeLista_id" value="<?php echo $anime['id_anime']; ?>">
-                            <input type="hidden" name="lista_id" value="<?php echo $lista->getIdLista(); ?>">
-                            <button type="submit" name="eliminarAnimeDeLista" value="eliminarAnime" onclick="return confirm('¿Seguro que quieres eliminar <?php echo $anime['Nombre']; ?> de esta lista?')">Eliminar Anime</button>
-                        </form>
+                            <form action="animesListas.php" method="POST">
+                                <input type="hidden" name="animeLista_id" value="<?php echo $anime['id_anime']; ?>">
+                                <input type="hidden" name="lista_id" value="<?php echo $lista->getIdLista(); ?>">
+                                <button type="submit" name="eliminarAnimeDeLista" value="eliminarAnime" onclick="return confirm('¿Seguro que quieres eliminar <?php echo $anime['Nombre']; ?> de esta lista?')">Eliminar Anime</button>
+                            </form>
+                        </div>
                     <?php endforeach; ?>
                 </ul>
             <?php else : ?>

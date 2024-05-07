@@ -1,0 +1,73 @@
+body {
+  background-color: #1a1a1a;
+  color: #c0c0c0;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1,
+h3 {
+  color: #e6e600;
+  margin: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+strong {
+  color: #ffd700;
+}
+
+.div-lista {
+  margin-top: 20px;
+}
+
+.lista-container {
+  background-color: #333333;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 70px 10px 20px 10px;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%
+  );
+
+  margin-top: 70px;
+}
+
+.div-anime {
+  background-color: #4d4d4d;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    0 100%
+  );
+}
+
+button {
+  background-color: #fdee06;
+  border: 0;
+  margin: 10px 0px;
+  height: 32px;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%
+  );
+  padding: 0 10px;
+  transition: background-color 0.2s ease 0.1s;
+}
