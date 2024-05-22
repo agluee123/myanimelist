@@ -33,12 +33,12 @@ session_start();
                 <div id="opciones_usuario" style="display: none;">
                     <button class="button"><a href="perfil.php">Mi Perfil</a></button>
                     <button class='button'><a href="Listas.php">Listas</a></button>
-                    <form action="../Intermedios/logout.php" method="post">
-                        <input type="submit" value="Cerrar Sesión">
-                    </form>
                     <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
                         <button class="button"><a href="adminAnime.php">Administrar</a></button>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                        <form action="../Intermedios/logout.php" method="post">
+                            <input type="submit" value="Cerrar Sesión">
+                        </form>
                 </div>
             </div>
         <?php endif; ?>
@@ -57,7 +57,7 @@ session_start();
         </script>
     </div>
 
-    </div>
+    
 
     <h1>Animes</h1>
 

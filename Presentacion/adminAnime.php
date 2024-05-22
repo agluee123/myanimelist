@@ -7,6 +7,13 @@ include_once("../Intermedios/AnimeIntermedio.php");
 
 session_start();
 
+if (!isset($_SESSION['id_usuario'])) {
+    // Redirige a la página de inicio de sesión u otra página apropiada si el id_usuario no está definido en la sesión
+    header("Location: ../Presentacion/IniciarSesion.php");
+    exit;
+}
+
+
 ?>
 
 <!DOCTYPE html>

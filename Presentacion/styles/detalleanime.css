@@ -24,24 +24,21 @@ body {
 
 .form-row {
     display: flex;
-    align-items: flex-start;
+    justify-content: space-evenly;
+    margin-top: 70px;
+    
 }
 
 .image-container {
     margin-right: 20px;
+   
 }
 
 .image-container img {
-    width: 100%;
-    height: auto;
+    width: 500px;
+    height: 700px;
     border-radius: 5px;
 }
-
-.text-container {
-    flex: 1;
-}
-
-
 
 h4, p {
     color: #ffd700; 
@@ -107,54 +104,10 @@ h4 {
     color: #ddd; 
 }
 
-
-
-
-/*estilos estrellas segunda version*/
-
-
-.votacion-animes {
-    border: none;
-    text-align: left;
-    direction: rtl;
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: nowrap; 
+h2{
+    text-align: center;
 }
 
-.votacion-animes span {
-    display: inline-block;
-    font-size: 2em;
-    color: #ddd; 
-}
-
-
-.votacion-animes span.full-star {
-    color: gold;
-}
-
-
-.votacion-animes span.half-star {
-    color: gold;
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
-}
-
-.votacion-animes span.half-star:before {
-    content: '\2605'; 
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 50%; 
-    overflow: hidden;
-    color: #ddd; 
-}
-
-/* Estrellas no resaltadas */
-.votacion-animes span.empty-star {
-    color: #ddd; 
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
+.text-container{
+    max-width: 350px;
 }

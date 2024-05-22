@@ -4,6 +4,8 @@ include_once("../Negocio/animeNegocio.php");
 include_once("../Negocio/autorNegocio.php");
 include_once("../Negocio/generoNegocio.php");
 
+
+
 $animeNegocio = new AnimeNegocio();
 $animes = $animeNegocio->listar();
 

@@ -12,9 +12,52 @@ include_once("../Intermedios/puntuacionIntermedio.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/detalleAnime.css">
+    <link rel="stylesheet" href="styles/animeVista.css">
 </head>
 
 <body>
+
+    <div class="navbar">
+        <div class="animelis">AnimeList</div>
+
+
+        <?php if (!isset($_SESSION['id_usuario'])) : ?>
+            <div class="button-container">
+                <button class="button"><a href="Iniciarsesion.php">Iniciar Sesión</a></button>
+                <button class="button"><a href="RegistroUsuario.php">Registrarse</a></button>
+
+            </div>
+        <?php else : ?>
+            <!-- Mostrar imagen de usuario y opciones de perfil -->
+            <div class='img' id='usuario_icono' onclick="toggleOptions()">
+                <img src="Imagen/usuario.png" class="imagen_usuario">
+                <div id="opciones_usuario" style="display: none;">
+                    <button class="button"><a href="perfil.php">Mi Perfil</a></button>
+                    <button class='button'><a href="Listas.php">Listas</a></button>
+                    <button class='button'><a href="animeVista.php">Inicio</a></button>
+                    <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
+                        <button class="button"><a href="adminAnime.php">Administrar</a></button>
+                    <?php endif; ?>
+                    <form action="../Intermedios/logout.php" method="post">
+                        <input type="submit" value="Cerrar Sesión">
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
+
+
+
+        <script>
+            function toggleOptions() {
+                var opcionesUsuario = document.getElementById("opciones_usuario");
+                if (opcionesUsuario.style.display === "none" || opcionesUsuario.style.display === "") {
+                    opcionesUsuario.style.display = "block";
+                } else {
+                    opcionesUsuario.style.display = "none";
+                }
+            }
+        </script>
+    </div>
 
     <h2>Detalles del Anime</h2>
 
@@ -65,40 +108,7 @@ include_once("../Intermedios/puntuacionIntermedio.php");
                 <?php endfor; ?>
             </div>
 
-            <h5> <?php echo $anime->getTotalVotos(); ?> Votos</h5>
-
-
-
-
-            <div class="votacion-animes">
-                <?php
-                // Multiplica el promedio por 2 para obtener un rango de 0 a 10
-                $promedioRango = $promedio * 2;
-
-                // Muestra las estrellas resaltadas según el rango
-                for ($i = 5; $i >= 1; $i--) :
-                    if ($promedioRango >= $i * 2) {
-                        echo '<span class="full-star" title="' . $i / 2 . ' stars">&#9733;</span>';
-                    } elseif ($promedioRango >= ($i * 2 - 1.5)) {
-                        echo '<span class="half-star" title="' . $i / 2 . ' stars">&#9733;</span>';
-                    } else {
-                        echo '<span class="empty-star" title="' . $i / 2 . ' stars">&#9734;</span>';
-                    }
-                endfor;
-                ?>
-            </div>
-
-
-
-
-
-
-
-
-
-
-            <h4>vota por este anime</h4>
-
+            <h4>Votacion:</h4>
 
             <form action="../Intermedios/puntuacionIntermedio.php" method="POST">
                 <input type="hidden" name="anime_id" value="<?php echo $anime->getIdAnime(); ?>">
@@ -111,9 +121,6 @@ include_once("../Intermedios/puntuacionIntermedio.php");
                 </div>
                 <button type="submit" name="submit_voto">Votar</button>
             </form>
-
-
-
 
             <h4>Género:</h4>
             <p><?php
