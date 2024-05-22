@@ -49,3 +49,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 }
+
+$usuarioNegocio = new usuarioNegocio();
+$usuarios = $usuarioNegocio->ListarUsuario();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $usuarioNegocio = new UsuarioNegocio();
+
+    if (isset($_POST['modificar'])) {
+        $id_usuario = $_POST['id_usuario'];
+
+        $actualizado = new Usuario();
+        $actualizado->setIdUsuario($id_usuario);
+        $actualizado->setNombre($_POST['nombre']);
+        $actualizado->setEmail($_POST['email']);
+        $actualizado->setTipoUsuario($_POST['tipo_usuario']);
+
+        $usuarioNegocio->ModificarUsuario($actualizado);
+        header("Location: ../Presentacion/adminUser.php");
+    }
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_editar'])) {
+
+    $usuario = new usuarioNegocio();
+
+    if (isset($_POST['id_usuario'])) {
+        $id_usuario = $_POST['id_usuario'];
+
+        $usuario = $usuario->ObtenerIdUsuario($id_usuario);
+    }
+}

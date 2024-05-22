@@ -148,7 +148,7 @@ function CargarArchivos($issetPost)
                 echo "Hubo un error al mover la imagen a la carpeta de destino.";
             }
         }
-        
+
         if (isset($_FILES['nueva_imagen_url']) && $_FILES['nueva_imagen_url']['error'] === UPLOAD_ERR_OK) {
             $archivo_nombre = $_FILES['nueva_imagen_url']['name'];
             $archivo_tmp = $_FILES['nueva_imagen_url']['tmp_name'];
@@ -165,5 +165,3 @@ function CargarArchivos($issetPost)
 
 CargarArchivos(isset($_POST["agregar"]));
 CargarArchivos(isset($_POST["modificar"]));
-
-

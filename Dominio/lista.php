@@ -37,9 +37,4 @@ class Lista
     {
         $this->id_usuario = $id_usuario;
     }
-
-
-
 }
-
-?>

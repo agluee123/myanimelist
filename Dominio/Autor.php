@@ -26,9 +26,4 @@ class Autor
     {
         $this->nombre_autor = $nombre_autor;
     }
-
-
-
 }
-
-?>

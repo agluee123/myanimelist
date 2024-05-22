@@ -1,5 +1,5 @@
 <?php
-class Genero    
+class Genero
 {
     private $id_genero;
     private $nombre_genero;
@@ -26,9 +26,4 @@ class Genero
     {
         $this->nombre_genero = $nombre_genero;
     }
-
-
-
 }
-
-?>

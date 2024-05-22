@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "No se recibió el id_lista o el id_anime correctamente.";
         }
     }
-    
+
     // Manejar la solicitud para obtener el ID de la lista
     if (isset($_POST['lista_id'])) {
         $idLista = $_POST['lista_id'];
@@ -47,19 +47,12 @@ if (isset($_POST['eliminarAnimeDeLista'])) {
         $idLista = $_POST['lista_id'];
         $idAnime = $_POST["animeLista_id"];
 
-        $AnimeListasNegocio = new AnimeListasNegocio ();
+        $AnimeListasNegocio = new AnimeListasNegocio();
 
-        $animeListaNegocio->eliminarAnimeDeLista($idAnime,$idLista);
-        header("Location: ../Presentacion/animesListas.php"); 
-        exit(); 
+        $animeListaNegocio->eliminarAnimeDeLista($idAnime, $idLista);
+        header("Location: ../Presentacion/animesListas.php");
+        exit();
     } else {
         echo "No se recibió el id_lista o el id_anime correctamente.";
     }
 }
-
-
-
-?>
-
-
-

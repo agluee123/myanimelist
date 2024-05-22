@@ -24,8 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nuevaLista->setIdUsuario($_SESSION['id_usuario']); // Utiliza $_SESSION['id_usuario'] en lugar de $_POST['usuario_id']
         $ListaNegocio->crearListas($nuevaLista);
         header("Location: ../Presentacion/Listas.php");
-    }
-    elseif (isset($_POST['eliminarLista'])) {
+    } elseif (isset($_POST['eliminarLista'])) {
         $ListasNegocio = new ListasNegocio();
         if (isset($_POST['lista_id'])) {
             $idLista = $_POST['lista_id'];
@@ -35,5 +34,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
-
-?>

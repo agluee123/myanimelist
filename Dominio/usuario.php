@@ -1,12 +1,12 @@
 <?php
-class Usuario       
+class Usuario
 {
     private $id_usuario;
     private $nombre;
     private $email;
     private $contraseña;
     private $tipo_usuario;
-    
+
 
 
     public function getIdUsuario()
@@ -59,9 +59,4 @@ class Usuario
     {
         $this->tipo_usuario = $tipo_usuario;
     }
-
-
-
 }
-
-?>

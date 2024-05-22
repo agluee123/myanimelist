@@ -1,5 +1,5 @@
 <?php
-class Puntuacion    
+class Puntuacion
 {
     private $id_puntuacion;
     private $id_usuario;
@@ -48,9 +48,4 @@ class Puntuacion
     {
         $this->id_usuario = $voto_positivo;
     }
-
-
-
 }
-
-?>

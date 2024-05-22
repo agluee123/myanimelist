@@ -4,7 +4,7 @@ include_once("../Negocio/PuntuacionNegocio.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-   
+
     $puntuacionNegocio = new PuntuacionNegocio();
 
     $idAnime = $_POST['anime_id'];
@@ -12,20 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idUsuario = $_POST['id_usuario'];
 
     if (!empty($idAnime) && !empty($puntuacion)) {
-       
-    
-    $puntuacionNegocio->PuntuacionAnime($idAnime, $puntuacion, $idUsuario);
+
+
+        $puntuacionNegocio->PuntuacionAnime($idAnime, $puntuacion, $idUsuario);
     } else {
         echo "Error: Datos insuficientes para procesar la puntuación del anime.";
     }
 
-    header("Location: ../Presentacion/detalleanime.php?anime_id=$idAnime"); 
+    header("Location: ../Presentacion/detalleanime.php?anime_id=$idAnime");
 }
-
-
-
-?>
-
-
-
-

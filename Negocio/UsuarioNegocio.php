@@ -94,24 +94,28 @@ class UsuarioNegocio
 
     public function ModificarUsuario(Usuario $actualizado)
     {
+
         $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
 
-        $query = "UPDATE usuario SET email=?, nombre=?, contraseña=?, tipo_usuario=? WHERE id_Usuario=?";
+        $query = "UPDATE usuario SET email=?, nombre=?, tipo_usuario=? WHERE id_Usuario=?";
 
         $stmt = mysqli_prepare($conexion, $query);
 
-        mysqli_stmt_bind_param($stmt, "ssssi", $email, $nombre, $contraseña, $tipo_usuario, $id_usuario);
-
         $email = $actualizado->getEmail();
         $nombre = $actualizado->getNombre();
-        $contraseña = $actualizado->getContraseña();
         $tipo_usuario = $actualizado->getTipoUsuario();
         $id_usuario = $actualizado->getIdUsuario();
 
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "Usuario modificado correctamente";
+        mysqli_stmt_bind_param($stmt, "sssi", $email, $nombre, $tipo_usuario, $id_usuario);
+
+        if (mysqli_stmt_execute($stmt)) {
+            if (mysqli_stmt_affected_rows($stmt) > 0) {
+                echo "Usuario modificado correctamente";
+            } else {
+                echo "No se modificaron registros, puede que los datos sean iguales a los actuales";
+            }
         } else {
-            echo "Error al modificar el Usuario que usted desea" . mysqli_error($conexion);
+            echo "Error al modificar el usuario: " . mysqli_stmt_error($stmt);
         }
 
         mysqli_stmt_close($stmt);
@@ -119,8 +123,53 @@ class UsuarioNegocio
     }
 
 
+    public function ListarUsuario()
+    {
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas de conexión");
 
+        $query = "SELECT id_usuario, email, Nombre, contraseña, tipo_usuario FROM usuario";
+        $resultado = $conexion->query($query);
+        $usuarios = [];
 
+        if ($resultado->num_rows > 0) {
+            while ($fila = $resultado->fetch_assoc()) {
+                $usuario = new Usuario();
+                $usuario->setIdUsuario($fila["id_usuario"]);
+                $usuario->setEmail($fila["email"]);
+                $usuario->setNombre($fila["Nombre"]);
+                $usuario->setContraseña($fila["contraseña"]);
+                $usuario->setTipoUsuario($fila["tipo_usuario"]);
+
+                $usuarios[] = $usuario;
+            }
+        }
+
+        $conexion->close();
+        return $usuarios;
+    }
+
+    public function eliminarUsuario($id_usuario)
+    {
+
+        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
+
+        $query = "DELETE FROM usuario WHERE id_usuario=?";
+
+        $stmt = mysqli_prepare($conexion, $query);
+
+        mysqli_stmt_bind_param($stmt, "i", $id_usuario);
+
+        mysqli_stmt_execute($stmt);
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "Usuario eliminado correctamente";
+        } else {
+            echo "No se puedo eliminar el usuario";
+
+            mysqli_stmt_close($stmt);
+            mysqli_close($conexion);
+        }
+    }
 
     public function ObtenerIdUsuario($id_usuario)
     {
@@ -143,31 +192,6 @@ class UsuarioNegocio
         } else {
             $conexion->close();
             return null;
-        }
-    }
-
-
-
-    public function eliminarUsuario($id_usuario)
-    {
-
-        $conexion = mysqli_connect("localhost", "root", "", "myanime") or die("Problemas con la conexión");
-
-        $query = "DELETE FROM usuario WHERE id_usuario=?";
-
-        $stmt = mysqli_prepare($conexion, $query);
-
-        mysqli_stmt_bind_param($stmt, "i", $id_usuario);
-
-        mysqli_stmt_execute($stmt);
-
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "Usuario eliminado correctamente";
-        } else {
-            echo "No se puedo eliminar el usuario";
-
-            mysqli_stmt_close($stmt);
-            mysqli_close($conexion);
         }
     }
 }
