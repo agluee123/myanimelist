@@ -86,7 +86,7 @@ include_once("../Intermedios/ListasIntermedio.php");
             <h4>Mis listas</h4>
 
 
-            <button class="button"><a href="animesListas.php">Ver mis listas</a></button>
+            <button class="button_lista"><a href="animesListas.php">Ver mis listas</a></button>
 
             <?php foreach ($listasUser as $lista) : ?>
                 <ul>
@@ -94,7 +94,7 @@ include_once("../Intermedios/ListasIntermedio.php");
 
                     <form action="listas.php" method="POST">
                         <input type="hidden" name="lista_id" value="<?php echo $lista->getIdLista(); ?>">
-                        <button type="submit" name="eliminarLista" value="eliminarLista" onclick="return confirm('¿Seguro que quieres eliminar esta lista?')">Eliminar Lista</button>
+                        <button class="button_lista" type="submit" name="eliminarLista" value="eliminarLista" onclick="return confirm('¿Seguro que quieres eliminar esta lista?')">Eliminar Lista</button>
                     </form>
                 </ul>
             <?php endforeach; ?>

@@ -132,7 +132,7 @@ a {
   padding: 10px;
   z-index: 1000;
   display: none;
-  height: 200px;
+ /* height: 200px;*/
 }
 
 #opciones_usuario button {
@@ -164,4 +164,6 @@ a {
 #opciones_usuario.active {
   display: block;
 }
+
+
 

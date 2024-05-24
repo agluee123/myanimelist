@@ -47,10 +47,10 @@ if (!isset($_SESSION['id_usuario'])) {
                     <button class='button'><a href="animeVista.php">Inicio</a></button>
                     <button class="button"><a href="perfil.php">Mi Perfil</a></button>
                     <button class='button'><a href="Listas.php">Listas</a></button>
-                    <form action="../Intermedios/logout.php" method="post">
-                        <input type="submit" value="Cerrar Sesión">
-                    </form>
                     <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
+                        <form action="../Intermedios/logout.php" method="post" class="form_sesion" style=" margin: 2px;">
+                           <button class="button" type="submit" style=" color: black;">Cerrar Sesión</button>
+                        </form>
                         <button class="button"><a href="adminAnime.php">Administrar</a></button>
                         <button class="button"><a href="adminUser.php">Usuarios</a></button>
                     <?php endif; ?>
