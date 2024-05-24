@@ -1,7 +1,5 @@
 <?php
-
 include_once("../intermedios/UsuarioIntermedio.php");
-
 ?>
 
 <!DOCTYPE html>

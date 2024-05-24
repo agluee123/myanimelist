@@ -43,9 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $usuarioNegocio->eliminarUsuario($id_usuario);
 
-        session_destroy();
+        echo ("<script>
+        let aceptar = confirm('Usario eliminado correctamente');
+        if (aceptar) {
+            window.location.href = '../Presentacion/adminUser.php';
+        }
+      </script>");
 
-        header("Location: ../Presentacion/animevista.php");
         exit();
     }
 }

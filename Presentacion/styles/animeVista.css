@@ -118,18 +118,18 @@ a {
   }
 }
 
-.imagen_usuario{
+.imagen_usuario {
   width: 40px;
 }
 
 #opciones_usuario {
   position: absolute;
-  top: 100%; 
-  right: 0; 
-  background-color: #333; 
-  border: 1px solid #747474; 
+  top: 100%;
+  right: 0;
+  background-color: #333;
+  border: 1px solid #747474;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px; 
+  padding: 10px;
   z-index: 1000;
   display: none;
   height: 200px;
@@ -143,15 +143,12 @@ a {
   background-color: #ffd700;
 }
 
-
 #opciones_usuario input {
-
   width: 100%;
-    background-color: #ffd700;
-    padding: 12px;
-    border-radius: 5px
+  background-color: #ffd700;
+  padding: 12px;
+  border-radius: 5px;
 }
-
 
 #opciones_usuario button a {
   color: #333;
@@ -164,7 +161,7 @@ a {
   background-color: #f0f0f0;
 }
 
-
 #opciones_usuario.active {
   display: block;
 }
+

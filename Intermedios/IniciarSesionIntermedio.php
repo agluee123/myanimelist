@@ -13,12 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Intenta iniciar sesión
     if ($usuarioNegocio->IniciarSesion($user)) {
         // Inicio de sesión exitoso
-        echo "Inicio de sesión exitoso.";
         header("Location: ../Presentacion/animeVista.php");
 
         // Puedes redirigir a la página deseada después del inicio de sesión
     } else {
         // Inicio de sesión fallido
-        echo "Credenciales incorrectas. Por favor, inténtalo de nuevo o regístrate.";
+        // echo "Credenciales incorrectas. Por favor, inténtalo de nuevo o regístrate.";
+        echo ("<script>
+        let aceptar = confirm('Credenciales incorrectas. Por favor, inténtalo de nuevo o regístrate');
+        if (aceptar) {
+            window.location.href = '../Presentacion/iniciarSesion.php';
+        }
+      </script>");
+        exit();
     }
 }

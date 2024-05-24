@@ -8,7 +8,7 @@ include_once("../Intermedios/ListasIntermedio.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Listas</title>
     <link rel="stylesheet" href="styles/Listas.css">
     <link rel="stylesheet" href="styles/animevista.css">
 </head>
@@ -31,15 +31,16 @@ include_once("../Intermedios/ListasIntermedio.php");
             <div class='img' id='usuario_icono' onclick="toggleOptions()">
                 <img src="Imagen/usuario.png" class="imagen_usuario">
                 <div id="opciones_usuario" style="display: none;">
+                    <button class="button"><a href="animeVista.php">Inicio</a></button>
                     <button class="button"><a href="perfil.php">Mi Perfil</a></button>
                     <button class='button'><a href="Listas.php">Listas</a></button>
-                    <button class='button'><a href="animeVista.php">Inicio</a></button>
+                    <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
+                        <button class="button"><a href="adminAnime.php">Administrar</a></button>
+                        <button class="button"><a href="adminUser.php">Usuarios</a></button>
+                    <?php endif; ?>
                     <form action="../Intermedios/logout.php" method="post">
                         <input type="submit" value="Cerrar Sesión">
                     </form>
-                    <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
-                        <button class="button"><a href="adminAnime.php">Administrar</a></button>
-                    <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?>

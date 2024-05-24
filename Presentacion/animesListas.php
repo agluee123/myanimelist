@@ -2,7 +2,7 @@
 include_once("../Intermedios/ListasAnimeIntermedio.php");
 include_once("../Intermedios/ListasIntermedio.php");
 include_once("../Negocio/animeListaNegocio.php");
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +33,15 @@ include_once("../Negocio/animeListaNegocio.php");
             <div class='img' id='usuario_icono' onclick="toggleOptions()">
                 <img src="Imagen/usuario.png" class="imagen_usuario">
                 <div id="opciones_usuario" style="display: none;">
+                    <button class='button'><a href="animeVista.php">Inicio</a></button>
                     <button class="button"><a href="perfil.php">Mi Perfil</a></button>
                     <button class='button'><a href="Listas.php">Listas</a></button>
-                    <button class='button'><a href="animeVista.php">Inicio</a></button>
                     <form action="../Intermedios/logout.php" method="post">
                         <input type="submit" value="Cerrar Sesión">
                     </form>
                     <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
                         <button class="button"><a href="adminAnime.php">Administrar</a></button>
+                        <button class="button"><a href="adminUser.php">Usuarios</a></button>
                     <?php endif; ?>
                 </div>
             </div>
@@ -62,7 +63,7 @@ include_once("../Negocio/animeListaNegocio.php");
 
     <?php if (!empty($listasUser)) : ?>
         <?php foreach ($listasUser as $lista) : ?>
-            <!--<h3>Lista: <?php echo $lista->getNombre(); ?></h3>-->
+            <h3>Lista: <?php echo $lista->getNombre(); ?></h3>
 
             <?php
             $animes = $animeListaNegocio->obtenerAnimesPorLista($lista->getIdLista());
