@@ -63,8 +63,7 @@ session_start();
 
     <?php if (!empty($listasUser)) : ?>
         <?php foreach ($listasUser as $lista) : ?>
-            <h3>Lista: <?php echo $lista->getNombre(); ?></h3>
-
+            
             <?php
             $animes = $animeListaNegocio->obtenerAnimesPorLista($lista->getIdLista());
             if (!empty($animes)) :
@@ -72,6 +71,9 @@ session_start();
 
                 <table>
                     <thead>
+                        <tr>
+                        <th><?php echo $lista->getNombre(); ?></th>
+                        </tr>
                         <tr>
                             <th>Nombre</th>
                             <th>Imagen</th>
@@ -102,6 +104,9 @@ session_start();
                 </table>
 
             <?php else : ?>
+                
+                <h3>Lista: <?php echo $lista->getNombre(); ?></h3>
+                
                 <p>No hay animes en esta lista.</p>
             <?php endif; ?>
         <?php endforeach; ?>
